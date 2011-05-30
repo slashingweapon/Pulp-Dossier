@@ -1,0 +1,48 @@
+Pulp Dossier is a character sheet for role-playing games based on Spirit of the
+Century source material.  It is not intended to enforce rules, but just keep 
+track of your character information and give you an easy way to track status
+information.
+
+I'm not doing this for money.  I am doing this because my gaming group is 
+planning on having a SotC game this summer and I thought it would be fun to
+program.
+
+My goals for version 1.0 are to support the following:
+
+	- Basic character information
+		- Picture and general information
+		- Background
+		- Aspects
+		- Skills
+		- Stunts
+		- Gagets
+	- Sample characters
+	- Built-in text for the SotC source material
+		- Sample characters
+		- Sample aspects
+		- Skills
+		- Stunts
+		- Gagets
+	- Status information
+		- fate points
+		- health
+		- composure
+		- consequences
+	- A 4dF die roller
+		- shake the iphone to roll dice!
+	- User-selected images for the character dossier and gagets
+	- Print characters to dead-tree format
+
+I have a lot of ideas for future versions, depending on user requests and what
+I happen to be interested in.  In no particular order:
+
+	- A virtual "Table Top" that enables multiplay interations
+		- start/join/leave a Table
+		- group chat
+		- private chat with GM/players
+		- collective character generation
+	- UI themes for characters
+	- The addition of more skills/etc via "Source Books".
+	- Support for different Fate/Fudge related characters
+	- Support for adjusting quality/prices of goods by time period
+
