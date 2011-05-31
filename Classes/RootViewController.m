@@ -5,9 +5,15 @@
 //  Created by Courtney Holmes on 5/29/11.
 //  Copyright 2011 CJ Holmes. All rights reserved.
 //
+//	TODO: move the global character array to somewhere more appropriate
+//
 
 #import "RootViewController.h"
+#import "Character.h"
+#import "CharacterController.h"
 
+// this doesn't belong here.  We'll move it soon...
+NSMutableArray* gAllCharacters;
 
 @implementation RootViewController
 
@@ -15,20 +21,25 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-/*
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	self.title = [NSString stringWithString:@"Characters"];
+	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
+																							target:self 
+																							action:@selector(addCharacter:)]
+											  autorelease];
+	
+	if (!gAllCharacters)
+		gAllCharacters = [[Character readAllCharacters] retain];
 }
-*/
 
-/*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	[self.tableView reloadData];
 }
-*/
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -65,7 +76,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [gAllCharacters count];
 }
 
 
@@ -80,7 +91,12 @@
     }
     
 	// Configure the cell.
-
+	Character* character = [gAllCharacters objectAtIndex:indexPath.row];
+	if (character)
+		cell.textLabel.text = character.name;
+	else
+		cell.textLabel.text	= @"Unnamed Character";
+	
     return cell;
 }
 
@@ -129,14 +145,11 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+    Character* pickedChar = [gAllCharacters objectAtIndex:indexPath.row];
+	CharacterController *cc = [[CharacterController alloc] initWithNibName:@"CharacterController" bundle:nil];
+	
+	cc.character = pickedChar;
+	[self.navigationController pushViewController:cc animated:YES];
 }
 
 
@@ -160,6 +173,25 @@
     [super dealloc];
 }
 
+#pragma mark -
+#pragma mark Custom Things
+
+/**
+ *	This gets called in response to the user hitting the big "+" button on the All Characters table.
+ *	We create the character and a controller for it, put the controller into editing mode, and then push it
+ *	onto our navigation controller.
+ */
+- (void) addCharacter:(id)sender {
+	Character* newChar = [[[Character alloc] init] autorelease];
+	[gAllCharacters addObject:newChar];
+	newChar.name = [NSString stringWithFormat:@"Alice %d", time(NULL)];
+	
+	CharacterController* cc = [[CharacterController alloc] initWithNibName:@"CharacterController" bundle:nil];
+	cc.character = newChar;
+	
+	[cc setEditing:YES animated:NO];
+	[self.navigationController pushViewController:cc animated:YES];
+}
 
 @end
 

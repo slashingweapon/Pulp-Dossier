@@ -99,6 +99,7 @@
 @property (nonatomic) BOOL dirty;
 
 + (NSString*) createSavePathForName:(NSString*)characterName;
++ (NSMutableArray*) readAllCharacters;
 
 - (BOOL)saveWithError:(NSString**)error;
 

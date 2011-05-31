@@ -91,9 +91,9 @@
 
 	// actualy writing the thing to disk is rediculously easy, since we support NSCoding
 	if (!errorResult) {
-		if (dirty) {
+		if (self.dirty)
 			self.characterVersion++;
-		}
+		self.dirty = NO;
 		if (![NSKeyedArchiver archiveRootObject:self toFile:filePath]) 
 			errorResult = @"The Archvist has failed you for the last time!";
 	}
@@ -147,6 +147,38 @@
 	return savePath;
 }
 
+/**
+ *	This, and the other file-related functions, probably belong somwhere else.  I'll refactor them when they are on the verge
+ *	of being unwieldy, or when I get a strong notion of exactly where they belong (whichever factor is first to cross my
+ *	annoyance threshhold).
+ */
++ (NSMutableArray*) readAllCharacters {
+	NSMutableArray* retval = [NSMutableArray array];
+	NSArray* docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString* charPath = [[docPaths objectAtIndex:0] stringByAppendingPathComponent:@"Characters"];
+	NSFileManager* fm = [[[NSFileManager alloc] init] autorelease];
+	NSString *file;
+	NSDirectoryEnumerator* de;
+	NSError* err;
+	
+	if ( [fm createDirectoryAtPath:charPath 
+	   withIntermediateDirectories:YES 
+						attributes:nil 
+							 error:&err]) {
+		
+		de = [fm enumeratorAtPath:charPath];
+		while (file = [de nextObject]) {
+			if ([[file pathExtension] isEqualToString: @"data"]) {
+				// process the document
+				NSString* fullPath = [charPath stringByAppendingPathComponent:file];
+				Character* oneChar = [NSKeyedUnarchiver unarchiveObjectWithFile:fullPath];
+				if (oneChar)
+					[retval addObject:oneChar];
+			}
+		}
+	}
+	return retval;
+}
 
 #pragma mark NSCoding implementation
 

@@ -16,20 +16,21 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-/*
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-*/
 
-/*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	if ([self.character.name length])
+		self.title = self.character.name;
+	else
+		self.title = @"Unnamed Character";
 }
-*/
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -124,7 +125,8 @@
 		cell.textLabel.text = character.name;
 	} else if (sectionData = [self arrayForSection:indexPath.section]) {
 		if (indexPath.row < [sectionData count]) {
-			cell.textLabel.text = [[sectionData objectAtIndex:indexPath.row] getName];
+			NSDictionary* thing = [sectionData objectAtIndex:indexPath.row];
+			cell.textLabel.text = [thing objectForKey:@"name"];
 		} else {
 			cell.textLabel.text = @"Add...";
 		}
@@ -188,6 +190,20 @@
     */
 }
 
+#pragma mark -
+#pragma mark Controller Methods
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+	[super setEditing:editing animated:animated];
+	NSString* err = nil;
+	
+	if (!editing) {
+		[character saveWithError:&err];
+		if (err) {
+			NSLog(@"%@", err);
+		}
+	}
+}
 
 #pragma mark -
 #pragma mark Memory management
