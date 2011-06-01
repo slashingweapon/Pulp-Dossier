@@ -11,6 +11,7 @@
 #import "RootViewController.h"
 #import "Character.h"
 #import "CharacterController.h"
+#import "DiceController.h"
 
 // this doesn't belong here.  We'll move it soon...
 NSMutableArray* gAllCharacters;
@@ -40,21 +41,19 @@ NSMutableArray* gAllCharacters;
 	[self.tableView reloadData];
 }
 
-/*
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self becomeFirstResponder];
 }
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
+
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
+	[self resignFirstResponder];
 }
-*/
 
 /*
  // Override to allow orientations other than the default portrait orientation.
@@ -172,6 +171,18 @@ NSMutableArray* gAllCharacters;
 - (void)dealloc {
     [super dealloc];
 }
+
+#pragma mark -
+#pragma mark Motion Handling
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{	
+	if (motion == UIEventSubtypeMotionShake) {
+		DiceController* dc = [[DiceController alloc] initWithNibName:@"DiceController" bundle:nil];
+		[self.navigationController pushViewController:dc animated:YES];
+	}
+}
+
 
 #pragma mark -
 #pragma mark Custom Things

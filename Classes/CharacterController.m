@@ -9,6 +9,7 @@
 #import "CharacterController.h"
 #import "Character.h"
 #import "EditableCell.h"
+#import "DiceController.h"
 
 @implementation CharacterController
 
@@ -31,6 +32,21 @@
 	else
 		self.title = @"Unnamed Character";
 }
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self becomeFirstResponder];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	[self resignFirstResponder];
+}
+
 
 #pragma mark -
 #pragma mark Table view data source
@@ -123,29 +139,19 @@
     return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
+	if (indexPath.section != CharacterSectionGeneral) {
+		if (editingStyle == UITableViewCellEditingStyleDelete) {
+			// Delete the row from the data source.
+			//[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		}   
+		else if (editingStyle == UITableViewCellEditingStyleInsert) {
+			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+		}   		
+	}
 }
-*/
 
 
 /*
@@ -209,6 +215,18 @@
 		}
 	}
 }
+
+#pragma mark -
+#pragma mark Motion Handling
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{	
+	if (motion == UIEventSubtypeMotionShake) {
+		DiceController* dc = [[DiceController alloc] initWithNibName:@"DiceController" bundle:nil];
+		[self.navigationController pushViewController:dc animated:YES];
+	}
+}
+
 
 #pragma mark -
 #pragma mark Memory management

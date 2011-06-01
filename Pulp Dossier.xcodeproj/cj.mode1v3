@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -272,7 +274,12 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>5</integer>
+									<integer>6</integer>
+									<integer>1</integer>
+									<integer>0</integer>
+								</array>
+								<array>
+									<integer>7</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -297,7 +304,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>228 104 1167 773 0 0 1440 878 </string>
+						<string>203 97 1167 773 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -308,14 +315,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>CharacterController.h</string>
+								<string>DiceController.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,26 +328,27 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>CharacterController.h</string>
+										<string>DiceController.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>23A83B471395B8CB000325AE</string>
+										<string>23A83B671395C76E000325AE</string>
 										<key>history</key>
 										<array>
 											<string>2349B41513932247006ABFC0</string>
 											<string>2328A23A13940B3400A25130</string>
-											<string>239443401394794E00F8F9D3</string>
-											<string>2394435C139484D400F8F9D3</string>
 											<string>2394435F139484D400F8F9D3</string>
 											<string>231E3BEE1395451100C5C758</string>
-											<string>23A83B0613959DE1000325AE</string>
 											<string>23A83B131395A2A0000325AE</string>
-											<string>23A83B251395AE44000325AE</string>
-											<string>23A83B261395AE44000325AE</string>
-											<string>23A83B2E1395AF91000325AE</string>
-											<string>23A83B451395B8CB000325AE</string>
-											<string>23A83B461395B8CB000325AE</string>
+											<string>23A83B5E1395C76E000325AE</string>
+											<string>23A83B5F1395C76E000325AE</string>
+											<string>23A83B601395C76E000325AE</string>
+											<string>23A83B611395C76E000325AE</string>
+											<string>23A83B621395C76E000325AE</string>
+											<string>23A83B631395C76E000325AE</string>
+											<string>23A83B641395C76E000325AE</string>
+											<string>23A83B651395C76E000325AE</string>
+											<string>23A83B661395C76E000325AE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -356,7 +362,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {959, 727}}</string>
 								<key>RubberWindowFrame</key>
-								<string>228 104 1167 773 0 0 1440 878 </string>
+								<string>203 97 1167 773 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -376,7 +382,7 @@
 								<key>Frame</key>
 								<string>{{0, 732}, {959, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>228 104 1167 773 0 0 1440 878 </string>
+								<string>203 97 1167 773 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -543,12 +549,12 @@
 		<string>23A839FE139557E3000325AE</string>
 		<string>23A839F0139554CA000325AE</string>
 		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>2349B41B13932247006ABFC0</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/cj/Documents/Pulp-Dossier/Pulp Dossier.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>228 104 1167 773 0 0 1440 878 </string>
+	<string>203 97 1167 773 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -640,7 +646,7 @@
 			<key>WindowToolGUID</key>
 			<string>2349B41B13932247006ABFC0</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
