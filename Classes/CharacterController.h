@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class Character;
+@class EditableCell;
 
 typedef enum {
 	CharacterSectionGeneral = 0,
@@ -19,6 +20,12 @@ typedef enum {
 	CharacterSectionCount
 } CharacterSection;
 
+typedef enum {
+	CharacterNameRow = 0,
+	CharacterOccupationRow,
+	CharacterGeneralRowCount
+} CharacterGeneralRow;
+
 @interface CharacterController : UITableViewController {
 	Character* character;
 }
@@ -26,5 +33,7 @@ typedef enum {
 @property (nonatomic, retain) Character* character;
 
 - (NSArray*)arrayForSection:(NSInteger)section;
+- (EditableCell*)getEditableCell;
+- (UITableViewCell*)getNormalCell;
 
 @end

@@ -11,6 +11,7 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		231E3BEC139544E600C5C758 /* EditableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 231E3BEB139544E600C5C758 /* EditableCell.m */; };
 		2328A2121393D78900A25130 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 2328A2111393D78900A25130 /* Character.m */; };
 		239442F313942B8500F8F9D3 /* CharacterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239442F113942B8500F8F9D3 /* CharacterController.xib */; };
 		2394430B13942D1A00F8F9D3 /* CharacterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394430A13942D1A00F8F9D3 /* CharacterController.m */; };
@@ -27,6 +28,8 @@
 		1D3623250D0F684500981E51 /* Pulp_DossierAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pulp_DossierAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Pulp Dossier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pulp Dossier.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		231E3BEA139544E600C5C758 /* EditableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableCell.h; sourceTree = "<group>"; };
+		231E3BEB139544E600C5C758 /* EditableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableCell.m; sourceTree = "<group>"; };
 		2328A2101393D78900A25130 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		2328A2111393D78900A25130 /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
 		239442F113942B8500F8F9D3 /* CharacterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterController.xib; sourceTree = "<group>"; };
@@ -64,6 +67,8 @@
 				2328A2111393D78900A25130 /* Character.m */,
 				2394430913942D1A00F8F9D3 /* CharacterController.h */,
 				2394430A13942D1A00F8F9D3 /* CharacterController.m */,
+				231E3BEA139544E600C5C758 /* EditableCell.h */,
+				231E3BEB139544E600C5C758 /* EditableCell.m */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* Pulp_DossierAppDelegate.h */,
@@ -195,6 +200,7 @@
 				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
 				2328A2121393D78900A25130 /* Character.m in Sources */,
 				2394430B13942D1A00F8F9D3 /* CharacterController.m in Sources */,
+				231E3BEC139544E600C5C758 /* EditableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

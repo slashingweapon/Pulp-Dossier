@@ -184,7 +184,6 @@ NSMutableArray* gAllCharacters;
 - (void) addCharacter:(id)sender {
 	Character* newChar = [[[Character alloc] init] autorelease];
 	[gAllCharacters addObject:newChar];
-	newChar.name = [NSString stringWithFormat:@"Alice %d", time(NULL)];
 	
 	CharacterController* cc = [[CharacterController alloc] initWithNibName:@"CharacterController" bundle:nil];
 	cc.character = newChar;

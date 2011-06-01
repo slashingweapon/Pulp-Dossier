@@ -8,6 +8,7 @@
 
 #import "CharacterController.h"
 #import "Character.h"
+#import "EditableCell.h"
 
 @implementation CharacterController
 
@@ -30,30 +31,6 @@
 	else
 		self.title = @"Unnamed Character";
 }
-
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 
 #pragma mark -
 #pragma mark Table view data source
@@ -95,15 +72,15 @@
 	NSArray* array;
 	
 	if (section == CharacterSectionGeneral) {
-		retval = 1;
+		retval = CharacterGeneralRowCount;
 	} else {
 		array = [self arrayForSection:section];
 		if (array) {
 			retval = [array count];
-			// if we're in editing mode, we'll need one more space for adding new items
-			if ([self isEditing])
-				retval++;
 		}
+		// if we're in editing mode, we'll need one more space for adding new items
+		if ([self isEditing])
+			retval++;
 	}
 	
 	return retval;
@@ -113,17 +90,28 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSArray* sectionData;
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
+	UITableViewCell *cell;
+	
 	if (indexPath.section == CharacterSectionGeneral) {
-		// Configure the cell...
-		cell.textLabel.text = character.name;
+		EditableCell *ecell;
+		
+		// Configure the cell depending on the row...
+		switch (indexPath.row) {
+			case CharacterNameRow:
+				ecell = [self getEditableCell];
+				ecell.textLabel.text = character.name;
+				[ecell setTarget:character withKey:@"name"];
+				cell = ecell;
+				break;
+			case CharacterOccupationRow:
+				ecell = [self getEditableCell];
+				ecell.textLabel.text = character.occupation;
+				[ecell setTarget:character withKey:@"occupation"];
+				cell = ecell;
+				break;
+		}
 	} else if (sectionData = [self arrayForSection:indexPath.section]) {
+		cell = [self getNormalCell];
 		if (indexPath.row < [sectionData count]) {
 			NSDictionary* thing = [sectionData objectAtIndex:indexPath.row];
 			cell.textLabel.text = [thing objectForKey:@"name"];
@@ -190,6 +178,23 @@
     */
 }
 
+/**
+ *	Set the style for the various rows of the table.  In the general section, all of the cells are edited 
+ *	in-place so they don't need an editing control.  In the array-based views, all of the items have a
+ *	delete control, except for the "Add..." item which gets an insertion control.
+ */
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+	UITableViewCellEditingStyle style = UITableViewCellEditingStyleNone;
+	
+	if (indexPath.section != CharacterSectionGeneral) {
+		if (indexPath.row < [[self arrayForSection:indexPath.section] count])
+			style = UITableViewCellEditingStyleDelete;
+		else
+			style = UITableViewCellEditingStyleInsert;
+	}
+	return style;
+}
+
 #pragma mark -
 #pragma mark Controller Methods
 
@@ -223,6 +228,32 @@
 
 - (void)dealloc {
     [super dealloc];
+}
+
+- (UITableViewCell*)getNormalCell {
+    static NSString *CellIdentifier = @"CharacterNormalCell";
+    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
+									   reuseIdentifier:CellIdentifier] 
+				autorelease];
+    }
+	
+	return cell;
+}
+
+- (EditableCell*)getEditableCell {
+    static NSString *CellIdentifier = @"CharacterEditableCell";
+    
+    EditableCell *cell = (EditableCell*) [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[EditableCell alloc] initWithStyle:UITableViewCellStyleDefault
+									reuseIdentifier:CellIdentifier] 
+				autorelease];
+    }
+	
+	return cell;
 }
 
 

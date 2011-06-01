@@ -119,6 +119,7 @@
 	NSFileManager* fm = [[[NSFileManager alloc] init] autorelease];
 	NSString* savePath;
 	NSInteger tryCount = 0;
+	NSInteger tryLimit = 100;
 	NSError* err;
 	
 	if ( [fm createDirectoryAtPath:charPath 
@@ -130,14 +131,14 @@
 		// to 1000 iterations of <charname>.<num>.data.
 		savePath = [charPath stringByAppendingPathComponent:characterName];
 		savePath = [savePath stringByAppendingPathExtension:@"data"];
-		while ([fm fileExistsAtPath:savePath] && tryCount<1000) {
+		while ([fm fileExistsAtPath:savePath] && ++tryCount<tryLimit) {	// on failure, tries name.[1..99].data
 			savePath = [charPath stringByAppendingPathComponent:characterName];
 			savePath = [savePath stringByAppendingPathExtension:[NSString stringWithFormat:@"%d", tryCount]];
 			savePath = [savePath stringByAppendingPathExtension:@"data"];
 		}
 		
 		// We tried.  We really did...
-		if (tryCount>=1000)
+		if (tryCount>=tryLimit)
 			savePath = nil;
 		
 	} else {
@@ -172,8 +173,10 @@
 				// process the document
 				NSString* fullPath = [charPath stringByAppendingPathComponent:file];
 				Character* oneChar = [NSKeyedUnarchiver unarchiveObjectWithFile:fullPath];
-				if (oneChar)
+				if (oneChar) {
+					oneChar->filePath = [fullPath retain];
 					[retval addObject:oneChar];
+				}
 			}
 		}
 	}
