@@ -223,9 +223,17 @@
 		self.composureTrack = [decoder decodeObjectForKey:@"composureTrack"];
 		self.consequences = [decoder decodeObjectForKey:@"consequences"];
 		self.aspects = [decoder decodeObjectForKey:@"aspects"];
+		if (!aspects)
+			self.aspects = [NSMutableArray array];
 		self.skills = [decoder decodeObjectForKey:@"skills"];
+		if (!skills)
+			self.skills = [NSMutableArray array];
 		self.stunts = [decoder decodeObjectForKey:@"stunts"];
+		if (!stunts)
+			self.stunts = [NSMutableArray array];
 		self.gadgets = [decoder decodeObjectForKey:@"gadets"];
+		if (!gadgets)
+			self.gadgets = [NSMutableArray array];
 	}
 	
 	return self;

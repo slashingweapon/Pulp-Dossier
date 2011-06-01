@@ -11,9 +11,13 @@
 #import "EditableCell.h"
 #import "DiceController.h"
 
+static NSString *gTakeAPictureTitle = @"Take a picture";
+static NSString *gPickAPictureTitle = @"Choose a picture";
+
 @implementation CharacterController
 
 @synthesize character;
+@synthesize profileButton;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -79,8 +83,26 @@
 	return CharacterSectionCount;
 }
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-	return [NSArray arrayWithObjects:@"", @"Aspects", @"Skills", @"Stunts", @"Gadgets", nil];
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	NSString *retval;
+	
+	switch (section) {
+		case CharacterSectionAspects:
+			retval = @"Aspects";
+			break;
+		case CharacterSectionSkills:
+			retval = @"Skills";
+			break;
+		case CharacterSectionStunts:
+			retval = @"Stunts";
+			break;
+		case CharacterSectionGadgets:
+			retval = @"Gadgets";
+			break;
+		default:
+			break;
+	}
+	return retval;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -154,22 +176,6 @@
 }
 
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 #pragma mark -
 #pragma mark Table view delegate
 
@@ -201,6 +207,37 @@
 	return style;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	CGRect rect;
+	UIView *retval = nil;
+	
+	rect = CGRectMake(0.0, 0.0, 32, 32);
+
+	if (section == CharacterSectionGeneral) {
+		UIImage *image;
+		UIButton *button = self.profileButton;
+		
+		if (character.portrait) {
+			image = [[[UIImage alloc] initWithData:character.portrait] autorelease];
+		} else {
+			image = [UIImage imageNamed:@"Icon.png"];
+		}
+		[button setImage:image forState:UIControlStateNormal];
+		retval = button;
+		/*
+		retval = [[[UIImageView alloc] initWithImage:image] autorelease];
+		retval.contentMode = UIViewContentModeScaleAspectFit;
+		retval.frame = rect;
+		 */
+	}
+	
+	return retval;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return (section == CharacterSectionGeneral) ? 100.0 : 32.0 ;
+}
+
 #pragma mark -
 #pragma mark Controller Methods
 
@@ -208,11 +245,15 @@
 	[super setEditing:editing animated:animated];
 	NSString* err = nil;
 	
-	if (!editing) {
+	if (editing) {
+		[self.tableView reloadData];
+	} else {
+		[self.view endEditing:YES];
 		[character saveWithError:&err];
 		if (err) {
 			NSLog(@"%@", err);
 		}
+		[self.tableView reloadData];
 	}
 }
 
@@ -246,6 +287,8 @@
 
 - (void)dealloc {
     [super dealloc];
+	self.profileButton = nil;
+	self.character = nil;
 }
 
 - (UITableViewCell*)getNormalCell {
@@ -274,6 +317,79 @@
 	return cell;
 }
 
+/**
+ *	Show an action sheet asking how the user wants to pick his picture.  We only show buttons for the input
+ *	sources that are available, of course.
+ */
+- (IBAction) changeProfile:(id)sender {
+	if (self.editing) {
+		UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"" 
+														   delegate:self
+												  cancelButtonTitle:@"Cancel"
+											 destructiveButtonTitle:nil
+												  otherButtonTitles:nil, nil];
+
+		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+			[sheet addButtonWithTitle:gTakeAPictureTitle];
+		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum])
+			[sheet addButtonWithTitle:gPickAPictureTitle];
+		[sheet showInView:self.view];
+	}
+}
+
+/**
+ *	Launch an image picker, with the source selected by the user.
+ */
+- (void)actionSheet:(UIActionSheet *)sheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	UIImagePickerControllerSourceType source;
+	NSString* buttonTitle = [sheet buttonTitleAtIndex:buttonIndex];
+	BOOL canceled = NO;
+	
+	// which source did the user pick?
+	if ([buttonTitle compare:gTakeAPictureTitle] == NSOrderedSame)
+		source = UIImagePickerControllerSourceTypeCamera;
+	else if ([buttonTitle compare:gPickAPictureTitle] == NSOrderedSame)
+		source = UIImagePickerControllerSourceTypePhotoLibrary;
+	else
+		canceled = YES;
+
+	if (!canceled) {
+		UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+		[ipc setSourceType: source];
+		[ipc setDelegate:self];
+		ipc.allowsEditing = YES;
+		[self presentModalViewController:ipc animated:YES];
+		[ipc release];
+	}
+}
+
+/**
+ *	Take either the edited/cropped image, or the original image, and make it the portrait for the character.
+ *	We resize the image to 100 points, because we don't want to save any more data than is really necessary.
+ */
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+	
+	UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+
+	if (image == nil)
+		image = [info objectForKey:UIImagePickerControllerOriginalImage];
+	
+	if (image != nil) {
+		CGRect imageRect = CGRectMake(0,0,100,100);
+		
+		UIGraphicsBeginImageContext(imageRect.size);
+		[image drawInRect:imageRect];
+		image = UIGraphicsGetImageFromCurrentImageContext();
+		[image retain];
+
+		UIGraphicsEndImageContext();
+		
+		[self.profileButton setImage:image forState:UIControlStateNormal];
+		self.character.portrait = UIImagePNGRepresentation(image);
+	}
+	
+	[self dismissModalViewControllerAnimated:YES];
+}
 
 @end
 

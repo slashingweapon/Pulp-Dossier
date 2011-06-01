@@ -26,14 +26,17 @@ typedef enum {
 	CharacterGeneralRowCount
 } CharacterGeneralRow;
 
-@interface CharacterController : UITableViewController {
-	Character* character;
+@interface CharacterController : UITableViewController <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+	Character *character;
+	id profileButton;
 }
 
-@property (nonatomic, retain) Character* character;
+@property (nonatomic, retain) Character *character;
+@property (nonatomic, retain) IBOutlet id profileButton;
 
 - (NSArray*)arrayForSection:(NSInteger)section;
 - (EditableCell*)getEditableCell;
 - (UITableViewCell*)getNormalCell;
+- (IBAction) changeProfile:(id)sender;
 
 @end

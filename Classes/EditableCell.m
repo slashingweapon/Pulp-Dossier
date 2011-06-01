@@ -88,7 +88,7 @@
 		NSObject *obj = dataTarget;
 		// self.textLabel.text = textField.text;	// update the label to the value of our edited text
 		[obj setValue:textField.text forKey:dataKey];	// update the model
-		[self.textField resignFirstResponder];
+		// [self.textField resignFirstResponder];
 	}
 }
 
