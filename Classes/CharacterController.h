@@ -34,7 +34,7 @@ typedef enum {
 @property (nonatomic, retain) Character *character;
 @property (nonatomic, retain) IBOutlet id profileButton;
 
-- (NSArray*)arrayForSection:(NSInteger)section;
+- (NSMutableArray*)arrayForSection:(NSInteger)section;
 - (EditableCell*)getEditableCell;
 - (UITableViewCell*)getNormalCell;
 - (IBAction) changeProfile:(id)sender;

@@ -22,6 +22,10 @@
 		23A83B5A1395C738000325AE /* DiceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A83B591395C738000325AE /* DiceController.xib */; };
 		23A83B5D1395C761000325AE /* DiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A83B5C1395C761000325AE /* DiceController.m */; };
 		23A83B731395C7DD000325AE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23A83B721395C7DD000325AE /* Security.framework */; };
+		23B5B7931396D75F00E6D850 /* SotC.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23B5B7921396D75F00E6D850 /* SotC.plist */; };
+		23B5B7981396D9F400E6D850 /* Sourcebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B5B7971396D9F400E6D850 /* Sourcebook.m */; };
+		23B5B7B513974D7300E6D850 /* ResourcePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B5B7B313974D7300E6D850 /* ResourcePicker.m */; };
+		23B5B7BC13974E0600E6D850 /* ResourcePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23B5B7BB13974E0600E6D850 /* ResourcePicker.xib */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
@@ -49,6 +53,12 @@
 		23A83B5B1395C761000325AE /* DiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceController.h; sourceTree = "<group>"; };
 		23A83B5C1395C761000325AE /* DiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceController.m; sourceTree = "<group>"; };
 		23A83B721395C7DD000325AE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		23B5B7921396D75F00E6D850 /* SotC.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SotC.plist; sourceTree = "<group>"; };
+		23B5B7961396D9F400E6D850 /* Sourcebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sourcebook.h; sourceTree = "<group>"; };
+		23B5B7971396D9F400E6D850 /* Sourcebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sourcebook.m; sourceTree = "<group>"; };
+		23B5B7B213974D7300E6D850 /* ResourcePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourcePicker.h; sourceTree = "<group>"; };
+		23B5B7B313974D7300E6D850 /* ResourcePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourcePicker.m; sourceTree = "<group>"; };
+		23B5B7BB13974E0600E6D850 /* ResourcePicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResourcePicker.xib; sourceTree = "<group>"; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* Pulp_Dossier_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pulp_Dossier_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
@@ -77,6 +87,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				23B5B7B213974D7300E6D850 /* ResourcePicker.h */,
+				23B5B7B313974D7300E6D850 /* ResourcePicker.m */,
 				2328A2101393D78900A25130 /* Character.h */,
 				2328A2111393D78900A25130 /* Character.m */,
 				2394430913942D1A00F8F9D3 /* CharacterController.h */,
@@ -89,6 +101,8 @@
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* Pulp_DossierAppDelegate.h */,
 				1D3623250D0F684500981E51 /* Pulp_DossierAppDelegate.m */,
+				23B5B7961396D9F400E6D850 /* Sourcebook.h */,
+				23B5B7971396D9F400E6D850 /* Sourcebook.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -125,6 +139,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				23B5B7921396D75F00E6D850 /* SotC.plist */,
 				23A83B591395C738000325AE /* DiceController.xib */,
 				23A83B531395C6DC000325AE /* minus.gif */,
 				23A83B541395C6DC000325AE /* plus.gif */,
@@ -132,6 +147,7 @@
 				2394437E1394940D00F8F9D3 /* Icon.png */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
 				239442F113942B8500F8F9D3 /* CharacterController.xib */,
+				23B5B7BB13974E0600E6D850 /* ResourcePicker.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Pulp_Dossier-Info.plist */,
 			);
@@ -210,6 +226,8 @@
 				23A83B571395C6DC000325AE /* plus.gif in Resources */,
 				23A83B581395C6DC000325AE /* zero.gif in Resources */,
 				23A83B5A1395C738000325AE /* DiceController.xib in Resources */,
+				23B5B7931396D75F00E6D850 /* SotC.plist in Resources */,
+				23B5B7BC13974E0600E6D850 /* ResourcePicker.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +245,8 @@
 				2394430B13942D1A00F8F9D3 /* CharacterController.m in Sources */,
 				231E3BEC139544E600C5C758 /* EditableCell.m in Sources */,
 				23A83B5D1395C761000325AE /* DiceController.m in Sources */,
+				23B5B7981396D9F400E6D850 /* Sourcebook.m in Sources */,
+				23B5B7B513974D7300E6D850 /* ResourcePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

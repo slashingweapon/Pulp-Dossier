@@ -10,6 +10,8 @@
 #import "Character.h"
 #import "EditableCell.h"
 #import "DiceController.h"
+#import "Sourcebook.h"
+#import "ResourcePicker.h"
 
 static NSString *gTakeAPictureTitle = @"Take a picture";
 static NSString *gPickAPictureTitle = @"Choose a picture";
@@ -55,8 +57,8 @@ static NSString *gPickAPictureTitle = @"Choose a picture";
 #pragma mark -
 #pragma mark Table view data source
 
-- (NSArray*)arrayForSection:(NSInteger)section {
-	NSArray* retval = nil;
+- (NSMutableArray*)arrayForSection:(NSInteger)section {
+	NSMutableArray* retval = nil;
 	
 	switch (section) {
 		case CharacterSectionAspects:
@@ -166,15 +168,54 @@ static NSString *gPickAPictureTitle = @"Choose a picture";
     
 	if (indexPath.section != CharacterSectionGeneral) {
 		if (editingStyle == UITableViewCellEditingStyleDelete) {
-			// Delete the row from the data source.
-			//[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-		}   
-		else if (editingStyle == UITableViewCellEditingStyleInsert) {
+			NSMutableArray *dataArray = [self arrayForSection:indexPath.section];
+			if (dataArray != nil && [dataArray count] < indexPath.row) {
+				[dataArray removeObjectAtIndex:indexPath.row];
+				[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+			}
+		} else if (editingStyle == UITableViewCellEditingStyleInsert) {
+			ResourcePicker* rp;
+			
+			switch (indexPath.section) {
+				case CharacterSectionAspects:
+					rp = [[ResourcePicker alloc] initWithNibName:@"ResourcePicker" bundle:nil];
+					rp.source = [[Sourcebook sharedSourcebook] valueForKey:@"aspects"];
+					rp.insertTarget = self;
+					rp.insertSelector = @selector(insertAspect:);
+					rp.customAllowed = YES;
+					[self presentModalViewController:rp animated:YES];
+					break;
+				case CharacterSectionSkills:
+					rp = [[ResourcePicker alloc] initWithNibName:@"ResourcePicker" bundle:nil];
+					rp.source = [[Sourcebook sharedSourcebook] valueForKey:@"skills"];
+					rp.insertTarget = self;
+					rp.insertSelector = @selector(insertSkill:);
+					rp.customAllowed = YES;
+					[self presentModalViewController:rp animated:YES];
+					break;
+			}
 			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
 		}   		
 	}
 }
 
+- (void)insertAspect:(NSMutableDictionary*)aspect {
+	if (aspect == nil) {
+		aspect = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"", @"name", @"", @"description", nil];
+	} else {
+		aspect = [NSMutableDictionary dictionaryWithDictionary:aspect]; // make a new copy of the data
+	}
+	
+	[self.character.aspects addObject:aspect];
+	
+	[self.tableView reloadData];
+	// NSIndexPath *path = [NSIndexPath	indexPathForRow:[self.character.aspects count] inSection:2];
+	// [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationLeft];
+}
+
+- (void)insertSkill:(NSMutableDictionary*)skill {
+	
+}
 
 #pragma mark -
 #pragma mark Table view delegate
