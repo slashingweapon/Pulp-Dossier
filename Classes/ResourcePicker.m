@@ -26,6 +26,22 @@
     self.navigationItem.rightBarButtonItem = self.cancelButton;
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+- (void)viewDidUnload {
+    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
+    // For example: self.myOutlet = nil;
+}
+
+
+- (void)dealloc {
+    [super dealloc];
+	[self.source release];
+	[self.cancelButton release];
+}
+
 
 #pragma mark -
 #pragma mark Table view data source
@@ -48,6 +64,8 @@
 }
 
 
+#define SUBSTRING_SIZE 20
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -61,8 +79,14 @@
     // Configure the cell...
     if (source != nil && indexPath.row < [source count]) {
 		id item = [source objectAtIndex:indexPath.row];
-		cell.textLabel.text = [item valueForKey:@"name"];
-		cell.detailTextLabel.text = [[item valueForKey:@"description"] substringToIndex:20];
+		NSString *text;
+		text = [item valueForKey:@"name"];
+		if (text) cell.textLabel.text = text;
+		
+		text = [item valueForKey:@"description"];
+		if ([text length] > SUBSTRING_SIZE)
+			text = [text substringToIndex:SUBSTRING_SIZE];
+		if (text) cell.detailTextLabel.text = text;
 	} else {
 		cell.textLabel.text = @"Custom...";
 	}
@@ -86,32 +110,12 @@
 	if (insertTarget && insertSelector && [insertTarget respondsToSelector:insertSelector]) {
 		[insertTarget performSelector:insertSelector withObject:resultItem];
 	}
-	[self dismissModalViewControllerAnimated:YES];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc. that aren't in use.
-}
-
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-}
-
-
-- (void)dealloc {
-    [super dealloc];
-}
 
 - (IBAction)cancel:(id)sender {
-	[self dismissModalViewControllerAnimated:YES];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

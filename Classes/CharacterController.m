@@ -169,32 +169,47 @@ static NSString *gPickAPictureTitle = @"Choose a picture";
 	if (indexPath.section != CharacterSectionGeneral) {
 		if (editingStyle == UITableViewCellEditingStyleDelete) {
 			NSMutableArray *dataArray = [self arrayForSection:indexPath.section];
-			if (dataArray != nil && [dataArray count] < indexPath.row) {
+			if (dataArray != nil && indexPath.row < [dataArray count]) {
 				[dataArray removeObjectAtIndex:indexPath.row];
 				[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 			}
 		} else if (editingStyle == UITableViewCellEditingStyleInsert) {
-			ResourcePicker* rp;
-			
+			ResourcePicker *rp = [[ResourcePicker alloc] initWithNibName:@"ResourcePicker" bundle:nil];
+
 			switch (indexPath.section) {
 				case CharacterSectionAspects:
-					rp = [[ResourcePicker alloc] initWithNibName:@"ResourcePicker" bundle:nil];
 					rp.source = [[Sourcebook sharedSourcebook] valueForKey:@"aspects"];
 					rp.insertTarget = self;
 					rp.insertSelector = @selector(insertAspect:);
 					rp.customAllowed = YES;
-					[self presentModalViewController:rp animated:YES];
+					rp.title = @"Aspects";
 					break;
 				case CharacterSectionSkills:
-					rp = [[ResourcePicker alloc] initWithNibName:@"ResourcePicker" bundle:nil];
 					rp.source = [[Sourcebook sharedSourcebook] valueForKey:@"skills"];
 					rp.insertTarget = self;
 					rp.insertSelector = @selector(insertSkill:);
-					rp.customAllowed = YES;
-					[self presentModalViewController:rp animated:YES];
+					rp.customAllowed = NO;
+					rp.title = @"Skills";
 					break;
+				/*
+				case CharacterSectionStunts:
+					rp.source = [[Sourcebook sharedSourcebook] valueForKey:@"stunts"];
+					rp.insertTarget = self;
+					rp.insertSelector = @selector(insertStunt:);
+					rp.customAllowed = NO;
+					rp.title = @"Stunts";
+					break;
+				case CharacterSectionGadgets:
+					rp.source = [[Sourcebook sharedSourcebook] valueForKey:@"gadets"];
+					rp.insertTarget = self;
+					rp.insertSelector = @selector(insertGaget:);
+					rp.customAllowed = NO;
+					rp.title = @"Gadgets";
+					break;
+				*/
 			}
-			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+			
+			[self.navigationController pushViewController:rp animated:YES];			
 		}   		
 	}
 }
@@ -209,12 +224,14 @@ static NSString *gPickAPictureTitle = @"Choose a picture";
 	[self.character.aspects addObject:aspect];
 	
 	[self.tableView reloadData];
-	// NSIndexPath *path = [NSIndexPath	indexPathForRow:[self.character.aspects count] inSection:2];
-	// [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationLeft];
 }
 
 - (void)insertSkill:(NSMutableDictionary*)skill {
-	
+	if (skill != nil) {
+		skill = [NSMutableDictionary dictionaryWithDictionary:skill]; // make a new copy of the data
+		[self.character.skills addObject:skill];
+		[self.tableView reloadData];
+	}
 }
 
 #pragma mark -

@@ -71,5 +71,64 @@
 			<string>The character is smart, simple as that.</string>
 		</dict>
 	</array>
+	<key>skills</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>Academics</string>
+			<key>description</key>
+			<string>Academics is a knowledge skill. It measures the character’s “book learning”. Any knowledge that would not explicitly fall under Science, Mysteries, or Art falls under this skill (though some overlap may exist among all of those). Characters with high Academics include scholars of antiquity, professors and know-it-alls.</string>
+			<key>level</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Alertness</string>
+			<key>description</key>
+			<string>Alertness is a measure of the character’s regular, passive level of awareness. Specifically, it is the perception skill to notice things the character is not looking for. </string>
+			<key>level</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Art</string>
+			<key>description</key>
+			<string>Art measures the character’s overall artistic ability, covering the gamut of endeavors, from painting to dance to music. This includes knowledge, composition, and performance. Characters with high Art include artists (obviously), aristocrats, and those of the avant garde.</string>
+			<key>level</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Athletics</string>
+			<key>description</key>
+			<string>This measures the character’s general physical capability, excepting raw power, which is a function of Might. Athletics covers running, jumping, climbing, and other broadly physical activities you might find in a track and field event. Characters with high Athletics include athletes, soldiers and outdoorsmen.</string>
+			<key>level</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Burglary</string>
+			<key>description</key>
+			<string>The ability to overcome security systems, from alarms to locks, falls under the auspices of this skill. This also includes knowledge of those systems and the ability to assess them. Characters with a high Burglary include burglars, private eyes and even some cops.</string>
+			<key>level</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Contacting</string>
+			<key>description</key>
+			<string>Contacting is the ability to find things out from people. A character may know a guy, who knows a guy, or maybe he just knows the right questions to ask. Whatever his methods, he know hows to find things out by asking around. Characters with high Contacting include reporters, private eyes and spies.</string>
+			<key>level</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Deceit</string>
+			<key>description</key>
+			<string>Deceit is the ability to lie, simple as that. Be it through word or deed, it’s the ability to convey falsehoods convincingly. Characters with high Deceit include grifters, spies, and politicians.</string>
+			<key>level</key>
+			<integer>1</integer>
+		</dict>
+	</array>
 </dict>
 </plist>
