@@ -37,5 +37,34 @@
 	[self.attributes dealloc];
 }
 
+- (id)valueForUndefinedKey:(NSString *)key {
+	id retval = nil;
+	
+	NSPredicate *labelPredicate = [NSPredicate predicateWithFormat:@"label like %@", key];
+	NSArray *foundItems = [self.attributes filteredArrayUsingPredicate:labelPredicate];
+	if (foundItems && [foundItems count])
+		retval = [foundItems objectAtIndex:0];
+	
+	return retval;
+}
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+	id oldValue;
+	
+	if ([value isKindOfClass:[CAttribute class]]) {
+		oldValue = [self valueForUndefinedKey:key];
+		if (oldValue) {
+			NSInteger index = [self.attributes indexOfObject:oldValue];
+			[self.attributes replaceObjectAtIndex:index withObject:value];
+		} else {
+			[self.attributes addObject:value];
+		}
+
+	} else if (value == nil) {
+		oldValue = [self valueForUndefinedKey:key];
+		if (oldValue)
+			[self.attributes removeObject:oldValue];
+	}
+}
 
 @end

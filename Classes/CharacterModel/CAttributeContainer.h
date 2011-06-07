@@ -25,4 +25,15 @@
 
 @property (nonatomic,retain) NSMutableArray *attributes;
 
+/*	Retrieves the first attribute whose label is equal to the key.  If the
+	labeled CAttribute does not exist, nil is returned.
+ */
+- (id)valueForUndefinedKey:(NSString *)key;
+
+/*	You can use any key you like to store CAttribute objects.  Doing so causes
+	the CAttribute's label property to be set to key.
+ */
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key;
+
+
 @end

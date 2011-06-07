@@ -22,7 +22,7 @@
 	};
 	231E3BEA139544E600C5C758 /* EditableCell.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {839, 706}}";
+			sepNavIntBoundsRect = "{{0, 0}, {744, 722}}";
 			sepNavSelRange = "{504, 0}";
 			sepNavVisRange = "{0, 504}";
 		};
@@ -31,7 +31,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {866, 1417}}";
 			sepNavSelRange = "{2639, 0}";
-			sepNavVisRange = "{0, 1580}";
+			sepNavVisRange = "{0, 1725}";
 		};
 	};
 	231E3BEE1395451100C5C758 /* PlistBookmark */ = {
@@ -449,8 +449,8 @@
 	};
 	2394430913942D1A00F8F9D3 /* CharacterController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1027, 706}}";
-			sepNavSelRange = "{627, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {1027, 722}}";
+			sepNavSelRange = "{986, 0}";
 			sepNavVisRange = "{0, 986}";
 		};
 	};
@@ -487,7 +487,7 @@
 	};
 	23A83B5B1395C761000325AE /* DiceController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {839, 728}}";
+			sepNavIntBoundsRect = "{{0, 0}, {744, 728}}";
 			sepNavSelRange = "{568, 0}";
 			sepNavVisRange = "{0, 1312}";
 		};
@@ -705,7 +705,7 @@
 	23D022A8139C764C006BDA7A /* CAttribute.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {744, 722}}";
-			sepNavSelRange = "{468, 0}";
+			sepNavSelRange = "{502, 0}";
 			sepNavVisRange = "{0, 947}";
 		};
 	};
@@ -748,15 +748,15 @@
 	23D022BF139D8F51006BDA7A /* CAttributeContainer.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {744, 722}}";
-			sepNavSelRange = "{531, 0}";
-			sepNavVisRange = "{0, 880}";
+			sepNavSelRange = "{1049, 0}";
+			sepNavVisRange = "{0, 1251}";
 		};
 	};
 	23D022C0139D8F51006BDA7A /* CAttributeContainer.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {744, 722}}";
-			sepNavSelRange = "{529, 0}";
-			sepNavVisRange = "{0, 708}";
+			sepNavIntBoundsRect = "{{0, 0}, {744, 923}}";
+			sepNavSelRange = "{1022, 0}";
+			sepNavVisRange = "{3, 1357}";
 		};
 	};
 	23D022DD139D97FF006BDA7A /* XCBuildMessageTextBookmark */ = {
@@ -765,7 +765,7 @@
 		fRef = 23D022C0139D8F51006BDA7A /* CAttributeContainer.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 40;
+		rLoc = 69;
 		rType = 1;
 	};
 	23D022DE139D97FF006BDA7A /* PBXTextBookmark */ = {
@@ -773,7 +773,7 @@
 		fRef = 23D022C0139D8F51006BDA7A /* CAttributeContainer.m */;
 		name = "CAttributeContainer.m: 25";
 		rLen = 0;
-		rLoc = 703;
+		rLoc = 1554;
 		rType = 0;
 		vrLen = 348;
 		vrLoc = 0;
