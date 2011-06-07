@@ -16,7 +16,7 @@
 -(id)init {
 	self = [super init];
 	if (self)
-		self.attributes = [NSArray array];
+		self.attributes = [NSMutableArray array];
 	return self;
 }
 
@@ -52,19 +52,41 @@
 	id oldValue;
 	
 	if ([value isKindOfClass:[CAttribute class]]) {
+		CAttribute *attr = value;
+		attr.label = key;
+
 		oldValue = [self valueForUndefinedKey:key];
 		if (oldValue) {
 			NSInteger index = [self.attributes indexOfObject:oldValue];
-			[self.attributes replaceObjectAtIndex:index withObject:value];
+			[self.attributes replaceObjectAtIndex:index withObject:attr];
 		} else {
-			[self.attributes addObject:value];
+			[self.attributes addObject:attr];
 		}
-
 	} else if (value == nil) {
 		oldValue = [self valueForUndefinedKey:key];
 		if (oldValue)
 			[self.attributes removeObject:oldValue];
 	}
+}
+
+-(NSUInteger)countOfAttributes {
+	return [self.attributes count];
+}
+
+-(id)objectInAttributesAtIndex:(NSUInteger)index {
+	return [self.attributes objectAtIndex:index];
+}
+
+- (void)insertObject:(id)anObject inAttributesAtIndex:(NSUInteger)index {
+	[self.attributes insertObject:anObject atIndex:index];
+}
+
+- (void)removeObjectFromAttributesAtIndex:(NSUInteger)index {
+	[self.attributes removeObjectAtIndex:index];
+}
+
+-(void)replaceObjectInAttributesAtIndex:(NSUInteger)index withObject:(id)anObject {
+	[self.attributes replaceObjectAtIndex:index withObject:anObject];
 }
 
 @end

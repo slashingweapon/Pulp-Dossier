@@ -45,27 +45,18 @@
 - (void)layoutSubviews {
 	[super layoutSubviews];
 	
-	if (self.editing) {
-		float inset = 10.0;
-		CGRect bounds = self.contentView.frame;
-		CGRect frame = CGRectMake(inset, inset, bounds.size.width, bounds.size.height);
-		
-		textField.frame = frame;
-		textField.font = self.textLabel.font;
-		textField.text = [dataTarget valueForKey:dataKey];
-		textField.hidden = NO;
-		self.textLabel.hidden = YES;
-		self.detailTextLabel.hidden = YES;
-	} else {
-		textField.hidden = YES;
-		self.textLabel.text = [dataTarget valueForKey:dataKey];
-		self.textLabel.hidden = NO;
-		self.detailTextLabel.hidden = NO;
-	}
+	textField.frame = self.textLabel.frame;
+	textField.font = self.textLabel.font;
+	textField.text = [dataTarget valueForKey:dataKey];
+	self.textLabel.hidden = YES;
+	
+	if (self.editing)
+		textField.enabled = YES;
+	else
+		textField.enabled = NO;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {    
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state.
 }

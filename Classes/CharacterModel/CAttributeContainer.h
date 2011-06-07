@@ -35,5 +35,10 @@
  */
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key;
 
+- (NSUInteger)countOfAttributes;
+- (id)objectInAttributesAtIndex:(NSUInteger)index;
+- (void)insertObject:(id)anObject inAttributesAtIndex:(NSUInteger)index;
+- (void)removeObjectFromAttributesAtIndex:(NSUInteger)index;
+- (void)replaceObjectInAttributesAtIndex:(NSUInteger)index withObject:(id)anObject; 
 
 @end

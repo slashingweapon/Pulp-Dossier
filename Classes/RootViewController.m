@@ -10,7 +10,7 @@
 
 #import "RootViewController.h"
 #import "Character.h"
-#import "CharacterController.h"
+#import "CharacterEditorController.h"
 #import "DiceController.h"
 
 // this doesn't belong here.  We'll move it soon...
@@ -33,7 +33,7 @@ NSMutableArray* gAllCharacters;
 											  autorelease];
 	
 	if (!gAllCharacters)
-		gAllCharacters = [[Character readAllCharacters] retain];
+		gAllCharacters = [[NSMutableArray array] retain]; // [[Character readAllCharacters] retain];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -92,68 +92,38 @@ NSMutableArray* gAllCharacters;
 	// Configure the cell.
 	Character* character = [gAllCharacters objectAtIndex:indexPath.row];
 	if (character) {
-		cell.textLabel.text = character.name;
-		if (character.occupation)
-			cell.detailTextLabel.text = character.occupation;
-	} else
-		cell.textLabel.text	= @"Unnamed Character";
+		NSString *attr = [character valueForKey:@"name.stringValue"];
+		if (attr)
+			cell.textLabel.text = attr;
+		else
+			cell.textLabel.text = @"Unnamed Character";
+		
+		
+		attr = [character valueForKey:@"occupation.stringValue"];
+		cell.detailTextLabel.text = (attr) ? attr : @"";
+	}
 
-	if (character.portrait != nil)
-		cell.imageView.image = [UIImage imageWithData:character.portrait];
+	NSData* portrait = [character valueForKey:@"portrait.image"];
+	if (portrait)
+		cell.imageView.image = [UIImage imageWithData:portrait];
 	
     return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	// No viewing is possible until we can add characters
+	
+	/*
     Character* pickedChar = [gAllCharacters objectAtIndex:indexPath.row];
 	CharacterController *cc = [[CharacterController alloc] initWithNibName:@"CharacterController" bundle:nil];
 	
 	cc.character = pickedChar;
 	[self.navigationController pushViewController:cc animated:YES];
+	 */
 }
 
 
@@ -201,10 +171,9 @@ NSMutableArray* gAllCharacters;
 	Character* newChar = [[[Character alloc] init] autorelease];
 	[gAllCharacters addObject:newChar];
 	
-	CharacterController* cc = [[CharacterController alloc] initWithNibName:@"CharacterController" bundle:nil];
+	CharacterEditorController* cc = [[CharacterEditorController alloc] initWithNibName:@"CharacterEditorController" bundle:nil];
 	cc.character = newChar;
 	
-	[cc setEditing:YES animated:NO];
 	[self.navigationController pushViewController:cc animated:YES];
 }
 
