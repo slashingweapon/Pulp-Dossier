@@ -86,15 +86,20 @@ NSMutableArray* gAllCharacters;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
 	// Configure the cell.
 	Character* character = [gAllCharacters objectAtIndex:indexPath.row];
-	if (character)
+	if (character) {
 		cell.textLabel.text = character.name;
-	else
+		if (character.occupation)
+			cell.detailTextLabel.text = character.occupation;
+	} else
 		cell.textLabel.text	= @"Unnamed Character";
+
+	if (character.portrait != nil)
+		cell.imageView.image = [UIImage imageWithData:character.portrait];
 	
     return cell;
 }

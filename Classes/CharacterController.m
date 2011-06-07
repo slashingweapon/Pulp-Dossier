@@ -12,6 +12,7 @@
 #import "DiceController.h"
 #import "Sourcebook.h"
 #import "ResourcePicker.h"
+#import "CRViewController.h"
 
 static NSString *gTakeAPictureTitle = @"Take a picture";
 static NSString *gPickAPictureTitle = @"Choose a picture";
@@ -155,6 +156,9 @@ static NSString *gPickAPictureTitle = @"Choose a picture";
 		if (indexPath.row < [sectionData count]) {
 			NSDictionary* thing = [sectionData objectAtIndex:indexPath.row];
 			cell.textLabel.text = [thing objectForKey:@"name"];
+			NSString *caption = [thing objectForKey:@"description"];
+			if (caption)
+				cell.detailTextLabel.text = caption;
 		} else {
 			cell.textLabel.text = @"Add...";
 		}
@@ -191,7 +195,6 @@ static NSString *gPickAPictureTitle = @"Choose a picture";
 					rp.customAllowed = NO;
 					rp.title = @"Skills";
 					break;
-				/*
 				case CharacterSectionStunts:
 					rp.source = [[Sourcebook sharedSourcebook] valueForKey:@"stunts"];
 					rp.insertTarget = self;
@@ -200,13 +203,12 @@ static NSString *gPickAPictureTitle = @"Choose a picture";
 					rp.title = @"Stunts";
 					break;
 				case CharacterSectionGadgets:
-					rp.source = [[Sourcebook sharedSourcebook] valueForKey:@"gadets"];
+					rp.source = [[Sourcebook sharedSourcebook] valueForKey:@"gadgets"];
 					rp.insertTarget = self;
-					rp.insertSelector = @selector(insertGaget:);
+					rp.insertSelector = @selector(insertGadget:);
 					rp.customAllowed = NO;
 					rp.title = @"Gadgets";
 					break;
-				*/
 			}
 			
 			[self.navigationController pushViewController:rp animated:YES];			
@@ -234,18 +236,36 @@ static NSString *gPickAPictureTitle = @"Choose a picture";
 	}
 }
 
+- (void)insertStunt:(NSMutableDictionary*)stunt {
+	if (stunt != nil) {
+		stunt = [NSMutableDictionary dictionaryWithDictionary:stunt]; // make a new copy of the data
+		[self.character.stunts addObject:stunt];
+		[self.tableView reloadData];
+	}
+}
+
+- (void)insertGadget:(NSMutableDictionary*)gadget {
+	if (gadget != nil) {
+		gadget = [NSMutableDictionary dictionaryWithDictionary:gadget]; // make a new copy of the data
+		[self.character.gadgets addObject:gadget];
+		[self.tableView reloadData];
+	}
+}
+
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
+	if (indexPath.section != CharacterSectionGeneral) {
+		NSArray* stuff = [self arrayForSection:indexPath.section];
+		if (stuff && indexPath.row < [stuff count]) {
+			id oneThing = [stuff objectAtIndex:indexPath.row];
+			CRViewController *crvc = [CRViewController hardInit:oneThing];
+			if (crvc)
+				[self.navigationController pushViewController:crvc animated:YES];
+		}
+			
+	}
 }
 
 /**
@@ -354,7 +374,7 @@ static NSString *gPickAPictureTitle = @"Choose a picture";
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle 
 									   reuseIdentifier:CellIdentifier] 
 				autorelease];
     }

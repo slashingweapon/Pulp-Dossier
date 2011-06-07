@@ -64,7 +64,7 @@
 }
 
 
-#define SUBSTRING_SIZE 20
+#define SUBSTRING_SIZE 50
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

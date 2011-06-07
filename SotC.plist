@@ -130,5 +130,208 @@
 			<integer>1</integer>
 		</dict>
 	</array>
+	<key>stunts</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>Linguist</string>
+			<key>skill</key>
+			<string>Academics</string>
+			<key>requirements</key>
+			<string></string>
+			<key>description</key>
+			<string>Normally, someone may only speak a number of additional languages equivalent to the value of his Academics skill. With this stunt, your character may speak five additional languages.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Gift of Tongues</string>
+			<key>skill</key>
+			<string>Academics</string>
+			<key>requirements</key>
+			<string>Linguist</string>
+			<key>description</key>
+			<string>Requires Linguist.
+
+There is no “mainstream” earthly language you cannot read or speak – no need to pick your languages. In addition, you may use your usual language “slots” to read and speak languages you have no business having learned, such as languages from lost fantastic cultures (Atlantis, Erehwon, Lemuria), of extraterrestrial or extradimensional origin, etc.
+
+Your slots remain increased by the Linguist stunt, so someone with Average Academics and these two stunts can speak every normal language on the planet, plus six (1+5) very unusual ones. The Linguist stunt may be taken multiple times in order to increase this number.
+
+</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Walking Library</string>
+			<key>skill</key>
+			<string>Academics</string>
+			<key>requirements</key>
+			<string></string>
+			<key>description</key>
+			<string>The character’s prodigious reading has paid off in spades, and he is able to recall minute details from even the most obscure literary works. The character is always considered to have a library on hand of a quality equal to his Academics skill, enabling him to answer questions with a base difficulty less than or equal to his Academics skill, using nothing other than his brain and some time for contemplation. Additionally, any research performed by this character in a real library automatically takes one unit less time (see “Taking Your Time” on page XX), and any libraries with a quality less than his Academics skill do not limit the difficulty of the question asked, as they normally would.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Photographic Memory</string>
+			<key>skill</key>
+			<string>Academics</string>
+			<key>requirements</key>
+			<string>Walking Library</string>
+			<key>description</key>
+			<string>If you’ve read it, you remember it. If the answer lies in something you’ve read before (this must be reasonable), then any research effort takes an additional two units less time – stacked on top of the benefit of Walking Library, this means that a half hour’s worth of research in books you’ve already encountered can be resolved in a matter of seconds, and a day’s worth covered in a mere hour. See the time table for more.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Studied Recall</string>
+			<key>skill</key>
+			<string>Academics</string>
+			<key>requirements</key>
+			<string>Photographic Memory</string>
+			<key>description</key>
+			<string>Your photographic memory extends outside of books. Once per scene, you may spend a fate point and roll Academics against a difficulty of Mediocre. Each shift you generate may be used to specify a target that you wish to memorize as you might a book – returning later, in your mind, to assess new details (using an appropriate perception skill, usually Investigation).
+
+This ability differs from Investigation’s Eye for Detail stunt in that Eye for Detail covers the entire location, after the fact, whereas Studied Recall requires you to specify which individual pieces of a location you are studying, while you are still in that location.
+			</string>
+		</dict>
+	</array>
+	<key>gadgets</key>
+	<array>
+		<dict>
+			<key>type</key>
+			<string>vehicle</string>
+			<key>name</key>
+			<string>Car</string>
+			<key>description</key>
+			<string>Model T Ford</string>
+			<key>speed</key>
+			<integer>1</integer>
+			<key>stress</key>
+			<integer>3</integer>
+			<key>cost</key>
+			<integer>4</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>vehicle</string>
+			<key>name</key>
+			<string>Luxury Car</string>
+			<key>description</key>
+			<string>Cadillac Model 61</string>
+			<key>speed</key>
+			<integer>3</integer>
+			<key>stress</key>
+			<integer>3</integer>
+			<key>cost</key>
+			<integer>5</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>vehicle</string>
+			<key>name</key>
+			<string>Hot Rod</string>
+			<key>description</key>
+			<string>Ford T-Bucket</string>
+			<key>speed</key>
+			<integer>4</integer>
+			<key>stress</key>
+			<integer>2</integer>
+			<key>cost</key>
+			<integer>4</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>vehicle</string>
+			<key>name</key>
+			<string>Limousine</string>
+			<key>description</key>
+			<string>Heine Velox V-12 limousine</string>
+			<key>speed</key>
+			<integer>2</integer>
+			<key>stress</key>
+			<integer>5</integer>
+			<key>cost</key>
+			<integer>5</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>vehicle</string>
+			<key>name</key>
+			<string>Truck</string>
+			<key>description</key>
+			<string>Mack Truck</string>
+			<key>speed</key>
+			<integer>1</integer>
+			<key>stress</key>
+			<integer>6</integer>
+			<key>cost</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>vehicle</string>
+			<key>name</key>
+			<string>Basic Motorcycle</string>
+			<key>description</key>
+			<string>Neracar Motor-cycle</string>
+			<key>speed</key>
+			<integer>3</integer>
+			<key>stress</key>
+			<integer>1</integer>
+			<key>cost</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>vehicle</string>
+			<key>name</key>
+			<string>Serious Motorcycle</string>
+			<key>description</key>
+			<string>Harley Davidson Big Chief</string>
+			<key>speed</key>
+			<integer>4</integer>
+			<key>stress</key>
+			<integer>1</integer>
+			<key>cost</key>
+			<integer>4</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>weapon</string>
+			<key>name</key>
+			<string>Pocket knife</string>
+			<key>description</key>
+			<string>A standard folding knife</string>
+			<key>quality</key>
+			<integer>-2</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>weapon</string>
+			<key>name</key>
+			<string>Hunting knife</string>
+			<key>description</key>
+			<string>A serrated knife in a sheath</string>
+			<key>quality</key>
+			<integer>-1</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>weapon</string>
+			<key>name</key>
+			<string>Spear</string>
+			<key>description</key>
+			<string>A pointed stick.</string>
+			<key>quality</key>
+			<integer>-1</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>weapon</string>
+			<key>name</key>
+			<string>Sword</string>
+			<key>description</key>
+			<string>A handle, a blade, and two edges.  What could be finer?</string>
+			<key>quality</key>
+			<integer>0</integer>
+		</dict>
+	</array>
 </dict>
 </plist>

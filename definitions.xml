@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE addresses SYSTEM "resources.dtd">
+<resources>
+
+	<resourceInterface>
+		<type>aspect</type>
+		<heading>Aspect</heading>
+		<sectionOrder>100</sectionOrder>
+		<detailView>
+			<title fromAttribute="name"/>
+			<text fromAttribute="description"/>
+		</detailView>
+		<cellView sectionOrder="100">
+			<textLabel fromAttribute="name"/>
+			<detailLabel fromAttribute="description"/>
+		</cellView>
+	</resourceInterface>
+	
+	<resourceInterface type="skill">
+		<heading>Skill</heading>
+		<sectionOrder>200</sectionOrder>
+		<orderBy>level</orderBy>
+		<orderBy>name</orderBy>
+		<detailView>
+			<title fromAttribute="name" noEdit/>
+			<ladder label="Level" fromAttribute="level" defaultValue="1"/>
+			<text fromAttribute="description" last/>
+		</detailView>
+		<cellView>
+			<textLabel fromAttribute="name"/>
+			<detailLabel fromAttribute="level"/>
+		</cellView>
+	</resourceInterface>
+	
+	<resourceInterface type="stunt">
+		<heading>Stunt</heading>
+		<sectionOrder>300</sectionOrder>
+		<orderBy>keySkill</orderBy>
+		<detailView>
+			<title fromAttribute="name"/>
+			<picker label="Key Skill" fromAttribute="keySkill" source="#resources.skill.name"/>
+			<text fromAttribute="description"/>
+		</detailView>
+		<cellView>
+			<textLabel fromAttribute="name"/>
+			<detailLabel fromAttribute="description"/>
+		</cellView>
+	</resourceInterface>
+	
+	<resourceInterface type="vehicle">
+		<heading>Vehicle</heading>
+		<orderBy>cost</orderBy>
+		<sectionOrder>500</sectionOrder>
+		<detailView>
+			<title fromAttribute="name" imageAttribute="image"/>
+			<text placeholder="description" fromAttribute="description"/>
+			<ladder label="Cost" fromAttribute="cost" defaultValue="4"/>
+			<ladder label="Top Speed" fromAttribute="speed" defaultValue="2"/>
+			<track label="Damage" fromAttribute="durability" defaultValue="3"/>
+			<text fromAttribute="notes" last/>
+		</detailView>
+		<cellView>
+			<textLabel fromAttribute="name"/>
+			<detailLabel fromAttribute="durability"/>
+		</cellView>
+	</resourceInterface>
+		
+</resources>
