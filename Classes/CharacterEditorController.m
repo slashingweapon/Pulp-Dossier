@@ -8,6 +8,7 @@
 
 #import "CharacterEditorController.h"
 #import "EditableCell.h"
+#import "CAttributeImage.h"
 
 @implementation CharacterEditorController
 
@@ -25,34 +26,10 @@
 	self.navigationItem.leftBarButtonItem = self.cancelBtn;	
 }
 
-/*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	[self setEditing:YES animated:NO];
 }
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 
 #pragma mark -
 #pragma mark Table view data source
@@ -71,25 +48,33 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-
+    CAttributeCell* cell;
+	
 	if (indexPath.row < [character.attributes count]) {
 		CAttribute *attr = [character.attributes objectAtIndex:indexPath.row];
-		EditableCell *ecell = [self getEditableCell];
-		[ecell setTarget:attr withKey:@"stringValue"];
-		ecell.detailTextLabel.text = attr.label;
-		cell = ecell;
+		cell = [attr cellForTableView:tableView];
+		cell.controller = self;
 	}
     
     return cell;
 }
 
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return UITableViewCellEditingStyleNone;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	CGFloat retval = tableView.rowHeight;
+	
+	if (indexPath.row < [character.attributes count]) {
+		CAttribute *attr = [character.attributes objectAtIndex:indexPath.row];
+		if ([attr isKindOfClass:[CAttributeImage class]])
+			retval = 100.0;
+	}
+	
+	return retval;
+}
 
 /*
 // Override to support conditional editing of the table view.

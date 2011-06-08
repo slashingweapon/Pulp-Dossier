@@ -19,6 +19,9 @@
     if (self) {
         textField = [[UITextField alloc] initWithFrame:CGRectZero];
 		textField.adjustsFontSizeToFitWidth = YES;
+		textField.font = [UIFont systemFontOfSize:17];
+		textField.minimumFontSize = 8;
+		
 		// Instead of a "Return" button, our keyboard will have a "Done" button.  When it is hit, we 
 		// want to put away the keyboard.
 		textField.returnKeyType = UIReturnKeyDone;
@@ -38,17 +41,28 @@
 
 
 /**
- *	When laying out the subviews, we check to see if we are in editing mode.  If we are, then we place the textField right
- *	where the standard textLabel would normally go, copy the textLabel's data, and then hide the textLabel.  If we aren't
- *	editing, then we just hide the textField and reveal the textLabel.
+ *	The technique here is to let the superclass do all the math for us.  Then we just hide the detailTextLabel,
+ *	and steal its frame, font size, color, etc. for our textField object.
  */
 - (void)layoutSubviews {
 	[super layoutSubviews];
 	
-	textField.frame = self.textLabel.frame;
-	textField.font = self.textLabel.font;
+	CGRect labelRect = self.textLabel.frame;
+	CGRect contentBounds = self.contentView.bounds;
+	CGSize exSize = [@"X" sizeWithFont:textField.font forWidth:contentBounds.size.width lineBreakMode:UILineBreakModeTailTruncation];
+	
+	CGRect fieldRect = CGRectMake(
+								  (labelRect.origin.x * 2) + labelRect.size.width,
+								  (contentBounds.size.height - exSize.height) / 2,
+								  contentBounds.size.width - (labelRect.origin.x * 3) - labelRect.size.width,
+								  exSize.height
+	);
+	
+	textField.frame = fieldRect;
+	textField.textAlignment = UITextAlignmentLeft;
 	textField.text = [dataTarget valueForKey:dataKey];
-	self.textLabel.hidden = YES;
+
+	self.detailTextLabel.hidden = YES;
 	
 	if (self.editing)
 		textField.enabled = YES;
@@ -88,12 +102,6 @@
  */
 - (void)doneWithKeyboard:(UITextField*)ctrl {
 	[textField resignFirstResponder];
-}
-
-- (void)setTarget:(id)target withKey:(NSString*)key {
-	dataTarget = target;
-	dataKey = key;
-	textField.placeholder = key;
 }
 
 @end

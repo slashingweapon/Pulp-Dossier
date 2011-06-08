@@ -33,4 +33,20 @@
 	[self.label dealloc];
 }
 
+- (CAttributeCell*)cellForTableView:(UITableView *)tableView {
+	static NSString* cellIdentifier = @"CAttributeCell";
+	CAttributeCell* cell = (CAttributeCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	if (![cell isKindOfClass:[CAttributeCell class]]) {
+		cell = [[[CAttributeCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cellIdentifier] autorelease];
+	}
+	
+	if (cell != nil) {
+		[cell setTarget:self withKey:@"label"];
+		cell.textLabel.text = self.label;
+		cell.detailTextLabel.text = @"huh?";
+	}
+	
+	return cell;
+}
+
 @end

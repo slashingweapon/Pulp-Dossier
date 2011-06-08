@@ -7,7 +7,7 @@
 //
 
 #import "CAttributeImage.h"
-
+#import "ImageCell.h"
 
 @implementation CAttributeImage
 
@@ -45,6 +45,22 @@
 	[super dealloc];
 	[self.imageValue dealloc];
 }
+
+- (UITableViewCell*)cellForTableView:(UITableView *)tableView {
+	static NSString* cellIdentifier = @"CAttributeImageCell";
+	ImageCell* cell = (ImageCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	if (![cell isKindOfClass:[ImageCell class]]) {
+		cell = [[[ImageCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cellIdentifier] autorelease];
+	}
+	
+	if (cell != nil) {
+		cell.textLabel.text = self.label;
+		[cell setTarget:self withKey:@"imageValue"];
+	}
+	
+	return cell;
+}
+
 
 
 @end

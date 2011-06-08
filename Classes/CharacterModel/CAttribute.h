@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CAttributeCell.h"
 
 /*	Characters have multiple attribute types in Pulp.  Most are pretty simple (string and text) while
 	others are compound attributes with several properties of their own.  An character attribute
@@ -23,6 +24,8 @@
 - (id)initWithCoder:(NSCoder *)decoder;
 
 - (void)encodeWithCoder:(NSCoder *)encoder;
+
+- (CAttributeCell*)cellForTableView:(UITableView *)tableView;
 
 /*	Takes an abbreviated class name from our xml parser and turns it into the correct
 	class.  For example, the XML element name "track" would return the CAttributeTrack class.

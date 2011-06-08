@@ -8,6 +8,7 @@
 
 #import "Character.h"
 #import "CAttributeString.h"
+#import "CAttributeImage.h"
 
 @implementation Character
 
@@ -19,6 +20,8 @@
 	self = [super init];
 	if (self) {
 		self.version = [NSNumber numberWithInt:CHARACTER_VERSION];
+		attr = [[[CAttributeImage alloc] init] autorelease];
+		[self setValue:attr forKey:@"portrait"];
 		attr = [[[CAttributeString alloc] init] autorelease];
 		[self setValue:attr forKey:@"name"];
 		attr = [[[CAttributeString alloc] init] autorelease];

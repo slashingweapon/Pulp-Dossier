@@ -7,7 +7,7 @@
 //
 
 #import "CAttributeString.h"
-
+#import "EditableCell.h"
 
 @implementation CAttributeString
 
@@ -37,5 +37,20 @@
 	[self.stringValue dealloc];
 }
 
+- (UITableViewCell*)cellForTableView:(UITableView *)tableView {
+	static NSString* cellIdentifier = @"CAttributeStringCell";
+	EditableCell* cell = (EditableCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	if (![cell isKindOfClass:[EditableCell class]]) {
+		cell = [[[EditableCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cellIdentifier] autorelease];
+	}
+	
+	if (cell != nil) {
+		cell.textLabel.text = self.label;
+		[cell setTarget:self withKey:@"stringValue"];
+		cell.textField.placeholder = @"...";
+	}
+	
+	return cell;
+}
 
 @end
