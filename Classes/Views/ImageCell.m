@@ -23,6 +23,7 @@
 
 		[self.contentView addSubview:imageButton];
 		self.detailTextLabel.hidden = YES;
+		self.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return self;
 }
