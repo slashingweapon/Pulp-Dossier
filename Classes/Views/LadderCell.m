@@ -20,27 +20,6 @@
     return self;
 }
 
-
-- (void)dealloc {
-    [super dealloc];
-}
-
-- (void)setTarget:(id)target withKey:(NSString*)key {
-	// unregister any old observers
-	if (dataTarget)
-		[dataTarget removeObserver:self forKeyPath:dataKey];
-	
-	[super setTarget:target withKey:key];
-	
-	// register as an observer of our target object
-	if (dataTarget) {
-		[dataTarget addObserver:self 
-					 forKeyPath:key 
-						options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial 
-						context:nil];
-	}
-}
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	NSNumber *newValue = [change valueForKey:NSKeyValueChangeNewKey];
 	if ([newValue isKindOfClass:[NSNumber class]]) {

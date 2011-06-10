@@ -8,6 +8,7 @@
 
 #import "CAttributeLadder.h"
 #import "LadderCell.h"
+#import "LadderViewController.h"
 
 static NSArray* gLevelStrings;
 
@@ -87,7 +88,7 @@ static NSArray* gLevelStrings;
 	NSArray* allLevels = [self allLevelStrings];
 	
 	NSInteger index = [level intValue];
-	index -= 8;
+	index = 8 - index;
 	
 	if (index < 0) {
 		index = 0;
@@ -118,6 +119,19 @@ static NSArray* gLevelStrings;
 						  ] retain];
 	}
 	return gLevelStrings;
+}
+
+- (UIViewController*) detailViewController:(BOOL)editing {
+	LadderViewController *lvc;
+	
+	if (editing) {
+		lvc = [[[LadderViewController alloc] initWithNibName:@"LadderViewController" bundle:nil] autorelease];
+		lvc.title = @"Set Ladder Value";
+		lvc.target = self;
+		lvc.key = @"levelValue";
+	}
+	
+	return lvc;
 }
 
 @end

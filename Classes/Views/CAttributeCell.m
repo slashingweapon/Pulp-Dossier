@@ -16,21 +16,38 @@
 @synthesize controller;
 
 - (void)dealloc {
-	[self setTarget:nil withKey:nil];
-	
     [super dealloc];
-	[dataTarget release];
-	[dataKey release];
+
+	[self setTarget:nil withKey:nil];
 }
 
 - (void)setTarget:(id)target withKey:(NSString*)key {
+	// unregister any old observers
+	if (dataTarget)
+		[dataTarget removeObserver:self forKeyPath:dataKey];
+	
 	dataTarget = [target retain];
 	dataKey = [key retain];	
+	
+	// register as an observer of our target object
+	if (dataTarget) {
+		[dataTarget addObserver:self 
+					 forKeyPath:key 
+						options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial 
+						context:nil];
+	}
 }
 
 - (void)prepareForReuse {
 	[self setTarget:nil withKey:nil];
 	controller = nil;
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	NSString *newText = [change valueForKey:NSKeyValueChangeNewKey];
+	
+	if ([newText isKindOfClass:[NSString class]])
+		self.detailTextLabel.text = newText;
 }
 
 @end

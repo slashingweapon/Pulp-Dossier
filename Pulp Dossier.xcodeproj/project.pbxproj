@@ -16,8 +16,11 @@
 		235B814A139ADD7800146FA0 /* CRTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B8149139ADD7800146FA0 /* CRTitleView.m */; };
 		235B826E139B2FEC00146FA0 /* CRTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B826D139B2FEC00146FA0 /* CRTextView.m */; };
 		235B829C139B383D00146FA0 /* CRLadderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B829B139B383D00146FA0 /* CRLadderView.m */; };
+		2360647913A26DCF008B5EBC /* CAttributeTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2360647813A26DCF008B5EBC /* CAttributeTrack.m */; };
 		2382387313A0579300867254 /* CAttributeLadder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2382387213A0579300867254 /* CAttributeLadder.m */; };
 		2382388013A066BE00867254 /* LadderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2382387F13A066BE00867254 /* LadderCell.m */; };
+		238238BC13A07BA100867254 /* LadderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 238238BA13A07BA100867254 /* LadderViewController.m */; };
+		238238CE13A07BFE00867254 /* LadderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 238238CD13A07BFE00867254 /* LadderViewController.xib */; };
 		239442F313942B8500F8F9D3 /* CharacterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239442F113942B8500F8F9D3 /* CharacterController.xib */; };
 		2394437F1394940D00F8F9D3 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2394437E1394940D00F8F9D3 /* Icon.png */; };
 		23A83B561395C6DC000325AE /* minus.gif in Resources */ = {isa = PBXBuildFile; fileRef = 23A83B531395C6DC000325AE /* minus.gif */; };
@@ -64,10 +67,15 @@
 		235B826D139B2FEC00146FA0 /* CRTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRTextView.m; path = Views/CRTextView.m; sourceTree = "<group>"; };
 		235B829A139B383D00146FA0 /* CRLadderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRLadderView.h; path = Views/CRLadderView.h; sourceTree = "<group>"; };
 		235B829B139B383D00146FA0 /* CRLadderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRLadderView.m; path = Views/CRLadderView.m; sourceTree = "<group>"; };
+		2360647713A26DCF008B5EBC /* CAttributeTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAttributeTrack.h; path = CharacterModel/CAttributeTrack.h; sourceTree = "<group>"; };
+		2360647813A26DCF008B5EBC /* CAttributeTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAttributeTrack.m; path = CharacterModel/CAttributeTrack.m; sourceTree = "<group>"; };
 		2382387113A0579300867254 /* CAttributeLadder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAttributeLadder.h; sourceTree = "<group>"; };
 		2382387213A0579300867254 /* CAttributeLadder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAttributeLadder.m; sourceTree = "<group>"; };
 		2382387E13A066BE00867254 /* LadderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LadderCell.h; path = Views/LadderCell.h; sourceTree = "<group>"; };
 		2382387F13A066BE00867254 /* LadderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LadderCell.m; path = Views/LadderCell.m; sourceTree = "<group>"; };
+		238238B913A07BA100867254 /* LadderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LadderViewController.h; sourceTree = "<group>"; };
+		238238BA13A07BA100867254 /* LadderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LadderViewController.m; sourceTree = "<group>"; };
+		238238CD13A07BFE00867254 /* LadderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LadderViewController.xib; sourceTree = "<group>"; };
 		239442F113942B8500F8F9D3 /* CharacterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterController.xib; sourceTree = "<group>"; };
 		2394437E1394940D00F8F9D3 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		23A83B531395C6DC000325AE /* minus.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = minus.gif; sourceTree = "<group>"; };
@@ -140,6 +148,8 @@
 				23D0230D139E86B4006BDA7A /* CharacterEditorController.m */,
 				23A83B5B1395C761000325AE /* DiceController.h */,
 				23A83B5C1395C761000325AE /* DiceController.m */,
+				238238B913A07BA100867254 /* LadderViewController.h */,
+				238238BA13A07BA100867254 /* LadderViewController.m */,
 				23D0258313A02513006BDA7A /* PickAnImageController.h */,
 				23D0258413A02513006BDA7A /* PickAnImageController.m */,
 				1D3623240D0F684500981E51 /* Pulp_DossierAppDelegate.h */,
@@ -202,6 +212,8 @@
 				23D022B1139D79F2006BDA7A /* CAttributeString.m */,
 				23D022B5139D7CCC006BDA7A /* CAttributeText.h */,
 				23D022B6139D7CCC006BDA7A /* CAttributeText.m */,
+				2360647713A26DCF008B5EBC /* CAttributeTrack.h */,
+				2360647813A26DCF008B5EBC /* CAttributeTrack.m */,
 				23D02307139E78DB006BDA7A /* Character.h */,
 				23D02308139E78DB006BDA7A /* Character.m */,
 			);
@@ -241,6 +253,7 @@
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
 				23D02324139E8713006BDA7A /* CharacterEditorController.xib */,
 				239442F113942B8500F8F9D3 /* CharacterController.xib */,
+				238238CD13A07BFE00867254 /* LadderViewController.xib */,
 				23B5B7BB13974E0600E6D850 /* ResourcePicker.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Pulp_Dossier-Info.plist */,
@@ -323,6 +336,7 @@
 				23B5B7931396D75F00E6D850 /* SotC.plist in Resources */,
 				23B5B7BC13974E0600E6D850 /* ResourcePicker.xib in Resources */,
 				23D02325139E8713006BDA7A /* CharacterEditorController.xib in Resources */,
+				238238CE13A07BFE00867254 /* LadderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +371,8 @@
 				23D0258513A02513006BDA7A /* PickAnImageController.m in Sources */,
 				2382387313A0579300867254 /* CAttributeLadder.m in Sources */,
 				2382388013A066BE00867254 /* LadderCell.m in Sources */,
+				238238BC13A07BA100867254 /* LadderViewController.m in Sources */,
+				2360647913A26DCF008B5EBC /* CAttributeTrack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

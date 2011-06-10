@@ -10,6 +10,7 @@
 #import "CAttributeString.h"
 #import "CAttributeImage.h"
 #import "CAttributeLadder.h"
+#import "CAttributeTrack.h"
 
 @implementation Character
 
@@ -29,6 +30,10 @@
 		[self setValue:attr forKey:@"occupation"];
 		attr = [[[CAttributeLadder alloc] initWithString:@"5"] autorelease];
 		[self setValue:attr forKey:@"awesomeness"];
+		attr = [[[CAttributeTrack alloc] initWithString:@"5"] autorelease];
+		[self setValue:attr forKey:@"health"];
+		attr = [[[CAttributeTrack alloc] initWithString:@"5"] autorelease];
+		[self setValue:attr forKey:@"composure"];
 	}
 	return self;
 }

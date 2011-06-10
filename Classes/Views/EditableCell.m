@@ -75,10 +75,6 @@
     // Configure the view for the selected state.
 }
 
-- (void)prepareForReuse {
-	dataTarget = nil;
-}
-
 /**
  *	Why not do these things in doneWithKeyboard?  Because a user can stop editing in a couple of ways
  *	besides touching the "Done" key, like touching a different cell.  So, when a cell goes out of 
@@ -102,6 +98,10 @@
  */
 - (void)doneWithKeyboard:(UITextField*)ctrl {
 	[textField resignFirstResponder];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	; // we explicitly do nothing here, because we're driving the text changes
 }
 
 @end

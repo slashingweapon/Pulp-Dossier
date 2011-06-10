@@ -49,4 +49,6 @@
 	return cell;
 }
 
+- (UIViewController*) detailViewController:(BOOL)editing { return nil; }
+
 @end
