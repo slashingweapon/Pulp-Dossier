@@ -85,6 +85,7 @@
 	if ([newImage isKindOfClass:[UIImage class]]) {
 		imageBackground = newImage;
 		[imageButton setBackgroundImage:newImage forState:UIControlStateNormal];
+		[self setNeedsLayout];
 	}
 }
 

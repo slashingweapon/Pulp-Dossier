@@ -46,8 +46,10 @@
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	NSString *newText = [change valueForKey:NSKeyValueChangeNewKey];
 	
-	if ([newText isKindOfClass:[NSString class]])
+	if ([newText isKindOfClass:[NSString class]]) {
 		self.detailTextLabel.text = newText;
+		[self setNeedsLayout];
+	}
 }
 
 @end

@@ -11,12 +11,14 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		23522D2913A4016C00C310B5 /* TrackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23522D2813A4016C00C310B5 /* TrackViewController.xib */; };
 		235B8140139AD39000146FA0 /* CRView.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B813F139AD39000146FA0 /* CRView.m */; };
 		235B8145139AD70000146FA0 /* CRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B8144139AD70000146FA0 /* CRViewController.m */; };
 		235B814A139ADD7800146FA0 /* CRTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B8149139ADD7800146FA0 /* CRTitleView.m */; };
 		235B826E139B2FEC00146FA0 /* CRTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B826D139B2FEC00146FA0 /* CRTextView.m */; };
 		235B829C139B383D00146FA0 /* CRLadderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B829B139B383D00146FA0 /* CRLadderView.m */; };
 		2360647913A26DCF008B5EBC /* CAttributeTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2360647813A26DCF008B5EBC /* CAttributeTrack.m */; };
+		236064B113A2A79B008B5EBC /* TrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 236064AF13A2A79B008B5EBC /* TrackViewController.m */; };
 		2382387313A0579300867254 /* CAttributeLadder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2382387213A0579300867254 /* CAttributeLadder.m */; };
 		2382388013A066BE00867254 /* LadderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2382387F13A066BE00867254 /* LadderCell.m */; };
 		238238BC13A07BA100867254 /* LadderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 238238BA13A07BA100867254 /* LadderViewController.m */; };
@@ -57,6 +59,7 @@
 		1D3623250D0F684500981E51 /* Pulp_DossierAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pulp_DossierAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Pulp Dossier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pulp Dossier.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		23522D2813A4016C00C310B5 /* TrackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackViewController.xib; sourceTree = "<group>"; };
 		235B813E139AD39000146FA0 /* CRView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRView.h; path = Views/CRView.h; sourceTree = "<group>"; };
 		235B813F139AD39000146FA0 /* CRView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRView.m; path = Views/CRView.m; sourceTree = "<group>"; };
 		235B8143139AD70000146FA0 /* CRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRViewController.h; path = Views/CRViewController.h; sourceTree = "<group>"; };
@@ -69,6 +72,8 @@
 		235B829B139B383D00146FA0 /* CRLadderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRLadderView.m; path = Views/CRLadderView.m; sourceTree = "<group>"; };
 		2360647713A26DCF008B5EBC /* CAttributeTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAttributeTrack.h; path = CharacterModel/CAttributeTrack.h; sourceTree = "<group>"; };
 		2360647813A26DCF008B5EBC /* CAttributeTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAttributeTrack.m; path = CharacterModel/CAttributeTrack.m; sourceTree = "<group>"; };
+		236064AD13A2A79B008B5EBC /* TrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackViewController.h; sourceTree = "<group>"; };
+		236064AF13A2A79B008B5EBC /* TrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackViewController.m; sourceTree = "<group>"; };
 		2382387113A0579300867254 /* CAttributeLadder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAttributeLadder.h; sourceTree = "<group>"; };
 		2382387213A0579300867254 /* CAttributeLadder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAttributeLadder.m; sourceTree = "<group>"; };
 		2382387E13A066BE00867254 /* LadderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LadderCell.h; path = Views/LadderCell.h; sourceTree = "<group>"; };
@@ -160,6 +165,8 @@
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				23B5B7961396D9F400E6D850 /* Sourcebook.h */,
 				23B5B7971396D9F400E6D850 /* Sourcebook.m */,
+				236064AD13A2A79B008B5EBC /* TrackViewController.h */,
+				236064AF13A2A79B008B5EBC /* TrackViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -255,6 +262,7 @@
 				239442F113942B8500F8F9D3 /* CharacterController.xib */,
 				238238CD13A07BFE00867254 /* LadderViewController.xib */,
 				23B5B7BB13974E0600E6D850 /* ResourcePicker.xib */,
+				23522D2813A4016C00C310B5 /* TrackViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Pulp_Dossier-Info.plist */,
 			);
@@ -337,6 +345,7 @@
 				23B5B7BC13974E0600E6D850 /* ResourcePicker.xib in Resources */,
 				23D02325139E8713006BDA7A /* CharacterEditorController.xib in Resources */,
 				238238CE13A07BFE00867254 /* LadderViewController.xib in Resources */,
+				23522D2913A4016C00C310B5 /* TrackViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +382,7 @@
 				2382388013A066BE00867254 /* LadderCell.m in Sources */,
 				238238BC13A07BA100867254 /* LadderViewController.m in Sources */,
 				2360647913A26DCF008B5EBC /* CAttributeTrack.m in Sources */,
+				236064B113A2A79B008B5EBC /* TrackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

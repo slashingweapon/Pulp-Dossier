@@ -25,7 +25,7 @@
 	if ([newValue isKindOfClass:[NSNumber class]]) {
 		NSString *stringValue = [CAttributeLadder stringForLevel:newValue];
 		self.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%+d)", stringValue, [newValue integerValue]];
-		[self setNeedsDisplay];
+		[self setNeedsLayout];
 	}
 }
 

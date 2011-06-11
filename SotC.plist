@@ -15,65 +15,6 @@
 	<key>skills</key>
 	<array>
 		<dict>
-			<key>id</key>
-			<string>burglary</string>
-			<key>name</key>
-			<string>Burglary</string>
-			<key>category</key>
-			<string>Stealth</string>
-			<key>description</key>
-			<string>You get &lt;em&gt;+1&lt;/em&gt; on weird stuff.</string>
-		</dict>
-		<dict>
-			<key>id</key>
-			<string>mysteries</string>
-			<key>name</key>
-			<string>Mysteries</string>
-			<key>category</key>
-			<string>Knowledge</string>
-			<key>description</key>
-			<string>You know &lt;b&gt;things&lt;/b&gt; you shold not.</string>
-		</dict>
-	</array>
-	<key>aspects</key>
-	<array>
-		<dict>
-			<key>name</key>
-			<string>Anger</string>
-			<key>description</key>
-			<string>The character’s rage simmers just below the surface, awaiting opportunity to burst. 
-			Sometimes his rage gives him the drive to see things through, but more often it leads him to rash action 
-			rather than forethought.</string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Bookworm</string>
-			<key>description</key>
-			<string>The character is an academic, well versed in all manner of obscure lore. His knowledge, unfortunately, is almost entirely from books, and theory is not always the same as practice.</string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Cowardly</string>
-			<key>description</key>
-			<string>The character is a firm believer in the better part of valor, either out of meekness, deep self interest, or some other motivator.</string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Duty</string>
-			<key>description</key>
-			<string>The character owes a duty to some one or thing which should come out of creation. 
-			Alternately, the character may simply take all of his responsibilities very seriously.</string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Inteligent</string>
-			<key>description</key>
-			<string>The character is smart, simple as that.</string>
-		</dict>
-	</array>
-	<key>skills</key>
-	<array>
-		<dict>
 			<key>name</key>
 			<string>Academics</string>
 			<key>description</key>
@@ -128,6 +69,42 @@
 			<string>Deceit is the ability to lie, simple as that. Be it through word or deed, it’s the ability to convey falsehoods convincingly. Characters with high Deceit include grifters, spies, and politicians.</string>
 			<key>level</key>
 			<integer>1</integer>
+		</dict>
+	</array>
+	<key>aspects</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>Anger</string>
+			<key>description</key>
+			<string>The character’s rage simmers just below the surface, awaiting opportunity to burst. 
+			Sometimes his rage gives him the drive to see things through, but more often it leads him to rash action 
+			rather than forethought.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Bookworm</string>
+			<key>description</key>
+			<string>The character is an academic, well versed in all manner of obscure lore. His knowledge, unfortunately, is almost entirely from books, and theory is not always the same as practice.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Cowardly</string>
+			<key>description</key>
+			<string>The character is a firm believer in the better part of valor, either out of meekness, deep self interest, or some other motivator.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Duty</string>
+			<key>description</key>
+			<string>The character owes a duty to some one or thing which should come out of creation. 
+			Alternately, the character may simply take all of his responsibilities very seriously.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Inteligent</string>
+			<key>description</key>
+			<string>The character is smart, simple as that.</string>
 		</dict>
 	</array>
 	<key>stunts</key>

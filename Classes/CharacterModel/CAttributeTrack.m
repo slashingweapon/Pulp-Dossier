@@ -7,7 +7,7 @@
 //
 
 #import "CAttributeTrack.h"
-
+#import "TrackViewController.h"
 
 @implementation CAttributeTrack
 
@@ -83,14 +83,14 @@
 
 	for (idx=0; idx<[maximum integerValue]; idx++) {
 		if ([track integerValue] & (1 << idx))
-			[mutie appendString:@"☑"];
+			[mutie appendString:CAttributeTrackChecked];
 		else
-			[mutie appendString:@"◻"];
+			[mutie appendString:CAttributeTrackUnchecked];
 	}
 	
 	NSString *conseq = [self.consequences lastObject];
 	if ([conseq isKindOfClass:[NSString class]])
-		[mutie appendFormat:@": (%@)", conseq];
+		[mutie appendFormat:@": %@", conseq];
 	
 	self.stringEquivalent = [NSString stringWithString:mutie];
 }
@@ -111,6 +111,10 @@
 	return cell;
 }
 
-- (UIViewController*) detailViewController:(BOOL)editing { return nil; }
+- (UIViewController*) detailViewController:(BOOL)editing {
+	TrackViewController *tvc = [[[TrackViewController alloc] initWithNibName:@"TrackViewController" bundle:nil] autorelease];
+	tvc.track = self;
+	return tvc;
+}
 
 @end

@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "CAttribute.h"
 
+#define CAttributeTrackUnchecked @"◻"
+#define CAttributeTrackChecked @"☒"
+
 @interface CAttributeTrack : CAttribute {
 	NSNumber *maximum;
 	NSNumber *track;
