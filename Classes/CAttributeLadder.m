@@ -7,8 +7,7 @@
 //
 
 #import "CAttributeLadder.h"
-#import "LadderCell.h"
-#import "LadderViewController.h"
+#import "IntegerCell.h"
 
 static NSArray* gLevelStrings;
 
@@ -70,18 +69,27 @@ static NSArray* gLevelStrings;
 }
 
 - (UITableViewCell*)cellForTableView:(UITableView *)tableView {
-	static NSString* cellIdentifier = @"CAttributeImageCell";
-	LadderCell* cell = (LadderCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-	if (![cell isKindOfClass:[LadderCell class]]) {
-		cell = [[[LadderCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cellIdentifier] autorelease];
+	static NSString* cellIdentifier = @"CAttributeLadderCell";
+	IntegerCell* cell = (IntegerCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	if (![cell isKindOfClass:[IntegerCell class]]) {
+		cell = [[[IntegerCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cellIdentifier] autorelease];
 	}
 	
 	if (cell != nil) {
 		cell.textLabel.text = self.label;
+		cell.formatSelector = @selector(levelAsString);
 		[cell setTarget:self withKey:@"levelValue"];
+		cell.minValue = -2;
+		cell.maxValue = 8;
 	}
 	
 	return cell;
+}
+
+- (NSString*) levelAsString {
+	return [NSString stringWithFormat:@"%@ (%+d)", 
+			[CAttributeLadder stringForLevel:levelValue], 
+			[levelValue integerValue]];
 }
 
 + (NSString*) stringForLevel:(NSNumber*)level {
@@ -119,19 +127,6 @@ static NSArray* gLevelStrings;
 						  ] retain];
 	}
 	return gLevelStrings;
-}
-
-- (UIViewController*) detailViewController:(BOOL)editing {
-	LadderViewController *lvc;
-	
-	if (editing) {
-		lvc = [[[LadderViewController alloc] initWithNibName:@"LadderViewController" bundle:nil] autorelease];
-		lvc.title = @"Set Ladder Value";
-		lvc.target = self;
-		lvc.key = @"levelValue";
-	}
-	
-	return lvc;
 }
 
 @end

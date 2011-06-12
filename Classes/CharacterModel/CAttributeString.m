@@ -14,7 +14,10 @@
 @synthesize stringValue;
 
 - (id)initWithString:(NSString*)inputString {
-	self.stringValue = inputString;
+	self = [super initWithString:inputString];
+	if (self)
+		self.stringValue = inputString;
+	
 	return self;
 }
 
@@ -29,12 +32,12 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     [super encodeWithCoder:encoder];
-    [encoder encodeObject:label forKey:@"label"];	
+    [encoder encodeObject:stringValue forKey:@"stringValue"];	
 }
 
 - (void)dealloc {
 	[super dealloc];
-	[self.stringValue dealloc];
+	[self.stringValue release];
 }
 
 - (UITableViewCell*)cellForTableView:(UITableView *)tableView {

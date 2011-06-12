@@ -11,6 +11,7 @@
 #import "CAttributeImage.h"
 #import "CAttributeLadder.h"
 #import "CAttributeTrack.h"
+#import "CAttributeInteger.h"
 
 @implementation Character
 
@@ -28,6 +29,8 @@
 		[self setValue:attr forKey:@"name"];
 		attr = [[[CAttributeString alloc] init] autorelease];
 		[self setValue:attr forKey:@"occupation"];
+		attr = [[[CAttributeInteger alloc] initWithString:@"10"] autorelease];
+		[self setValue:attr forKey:@"fate points"];
 		attr = [[[CAttributeLadder alloc] initWithString:@"5"] autorelease];
 		[self setValue:attr forKey:@"awesomeness"];
 		attr = [[[CAttributeTrack alloc] initWithString:@"5"] autorelease];
