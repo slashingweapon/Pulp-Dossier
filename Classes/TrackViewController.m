@@ -127,6 +127,7 @@
 		[btn setTitle:CAttributeTrackUnchecked forState:UIControlStateNormal];
 		maximumValue++;
 	}
+	maxLabel.text = [@"Maximum: " stringByAppendingFormat:@"%d", maximumValue];	
 }
 
 /*	Use our data to set a new state for our source track object */
@@ -177,10 +178,18 @@
 
 @end
 
+/*	IBOutletCollection arrays are a problem, in that we aren't guaranteed the 
+	order in which the items will appear in the array.  To make sure our internal
+	order matches the order in which they appear on the screen, we have to sort
+	the array by view location.
+ 
+	We assume that all views are top-aligned with the other views in their row.
+	If we need a little more leway, this function could easily be tweaked.
+ */
 NSInteger originSort(id btn1, id btn2, void *context)
 {
-    CGPoint o1 = ((UIButton*)btn1).frame.origin;
-	CGPoint o2 = ((UIButton*)btn2).frame.origin;
+    CGPoint o1 = ((UIView*)btn1).frame.origin;
+	CGPoint o2 = ((UIView*)btn2).frame.origin;
 
 	if ((o1.y < o2.y) || (o1.y == o2.y && o1.x < o2.x))
         return NSOrderedAscending;
