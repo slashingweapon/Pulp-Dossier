@@ -20,9 +20,11 @@
 	other goodness that KV-compliant coding gives us (observability, etc).
  */
 @interface CAttributeContainer : NSObject <NSCoding> {
+	NSString *type;
 	NSMutableArray *attributes;
 }
 
+@property (nonatomic,retain) NSString *type;
 @property (nonatomic,retain) NSMutableArray *attributes;
 
 /*	Retrieves the first attribute whose label is equal to the key.  If the

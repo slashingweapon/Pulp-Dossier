@@ -15,6 +15,11 @@ static NSArray* gLevelStrings;
 
 @synthesize levelValue;
 
+- (NSString*)type {
+	return @"ladder";
+}
+
+
 - (id)initWithString:(NSString*)inputString {
 	self = [super initWithString:inputString];
 	if (self) {

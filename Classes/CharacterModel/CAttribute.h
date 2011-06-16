@@ -19,6 +19,8 @@
 
 @property (nonatomic, retain) NSString *label;
 
+- (NSString*)type;
+
 - (id)initWithString:(NSString*)inputString;
 
 - (id)initWithCoder:(NSCoder *)decoder;

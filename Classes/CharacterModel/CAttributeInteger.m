@@ -13,6 +13,10 @@
 
 @synthesize integerValue;
 
+- (NSString*)type {
+	return @"integer";
+}
+
 - (id)initWithString:(NSString*)inputString {
 	self = [super initWithString:inputString];
 	if (self)

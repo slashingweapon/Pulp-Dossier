@@ -13,6 +13,10 @@
 
 @synthesize label;
 
+- (NSString*)type {
+	return @"attribute";
+}
+
 - (id)initWithString:(NSString*)inputString {
 	return self;
 }

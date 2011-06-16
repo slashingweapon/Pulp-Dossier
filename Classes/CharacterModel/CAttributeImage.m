@@ -13,6 +13,10 @@
 
 @synthesize imageValue;
 
+- (NSString*)type {
+	return @"image";
+}
+
 /*	The string is a path of some kind, relative to a sourcebook.  Load and go! */
 - (id)initWithString:(NSString*)inputString {
 	// ok, so we're not implemented yet.

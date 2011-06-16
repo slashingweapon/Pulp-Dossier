@@ -101,7 +101,7 @@
  *	Call the target object (insertTarget) with the appropriate selector (insertSelector)
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSDictionary *resultItem = nil;
+	id resultItem;
 	
 	if (source && indexPath.row < [source count]) {
 		resultItem = [source objectAtIndex:indexPath.row];

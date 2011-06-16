@@ -13,6 +13,10 @@
 
 @synthesize stringValue;
 
+- (NSString*)type {
+	return @"string";
+}
+
 - (id)initWithString:(NSString*)inputString {
 	self = [super initWithString:inputString];
 	if (self)

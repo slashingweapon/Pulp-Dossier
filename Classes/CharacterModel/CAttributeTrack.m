@@ -16,6 +16,10 @@
 @synthesize consequences;
 @synthesize stringEquivalent;
 
+- (NSString*)type {
+	return @"track";
+}
+
 - (id)initWithString:(NSString*)inputString {
 	self = [super initWithString:inputString];
 	if (self) {

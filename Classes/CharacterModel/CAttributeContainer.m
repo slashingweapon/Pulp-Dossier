@@ -11,7 +11,9 @@
 
 @implementation CAttributeContainer
 
+@synthesize type;
 @synthesize attributes;
+
 
 -(id)init {
 	self = [super init];
@@ -21,14 +23,18 @@
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
-	self.attributes = [decoder decodeObjectForKey:@"attributes"];
-	if (self.attributes == nil)
-		self.attributes = [NSArray array];
+	self.type = [decoder decodeObjectForKey:@"type"];
 	
+	self.attributes = [decoder decodeObjectForKey:@"attributes"];
+	if (self.attributes == nil) {
+		self.attributes = [NSArray array];
+	}
+
 	return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
+	[encoder encodeObject:type forKey:@"type"];
 	[encoder encodeObject:attributes forKey:@"attributes"];
 }
 

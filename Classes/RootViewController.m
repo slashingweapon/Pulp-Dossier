@@ -10,7 +10,7 @@
 
 #import "RootViewController.h"
 #import "Character.h"
-#import "CharacterEditorController.h"
+#import "ResourceController.h"
 #import "DiceController.h"
 
 // this doesn't belong here.  We'll move it soon...
@@ -171,8 +171,9 @@ NSMutableArray* gAllCharacters;
 	Character* newChar = [[[Character alloc] init] autorelease];
 	[gAllCharacters addObject:newChar];
 	
-	CharacterEditorController* cc = [[CharacterEditorController alloc] initWithNibName:@"CharacterEditorController" bundle:nil];
-	cc.character = newChar;
+	ResourceController* cc = [[ResourceController alloc] initWithNibName:@"ResourceController" bundle:nil];
+	cc.resource = newChar;
+	[cc setEditing:YES animated:NO];
 	
 	[self.navigationController pushViewController:cc animated:YES];
 }

@@ -11,4 +11,9 @@
 
 @implementation CAttributeText
 
+- (NSString*)type {
+	return @"text";
+}
+
+
 @end
