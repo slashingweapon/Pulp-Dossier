@@ -8,6 +8,7 @@
 
 #import "CAttributeImage.h"
 #import "ImageCell.h"
+#import "PickAnImageController.h"
 
 @implementation CAttributeImage
 
@@ -65,6 +66,16 @@
 	return cell;
 }
 
-
+- (UIViewController*) detailViewController:(BOOL)editing {
+	PickAnImageController *picker = nil;
+	
+	if (editing) {
+		picker = [[[PickAnImageController alloc] initWithNibName:nil bundle:nil] autorelease];
+		picker.target = self;
+		picker.key = @"imageValue";		
+	}
+	
+	return picker;
+}
 
 @end

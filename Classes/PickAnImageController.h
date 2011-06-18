@@ -18,9 +18,13 @@
 {
 	id target;
 	NSString *key;
+	UIImagePickerController *ipc;
+	UIActionSheet *sheet;
 }
 
 @property (nonatomic, retain) id target;
 @property (nonatomic, retain) NSString *key;
+@property (nonatomic, retain) UIImagePickerController *ipc;
+@property (nonatomic, retain) UIActionSheet *sheet;
 
 @end

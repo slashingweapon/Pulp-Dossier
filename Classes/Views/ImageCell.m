@@ -15,14 +15,9 @@
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-		imageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		imageButton.enabled = NO;
-		[imageButton addTarget:self 
-						action:@selector(pickImage:)
-			  forControlEvents:UIControlEventTouchUpInside];
-
-		[self.contentView addSubview:imageButton];
-		self.detailTextLabel.hidden = YES;
+		picture = [[[UIImageView alloc] initWithImage:nil] autorelease];
+		[self.contentView addSubview:picture];
+		
 		self.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return self;
@@ -31,11 +26,6 @@
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
-	
-	if (imageBackground == nil) {
-		imageBackground = [UIImage imageNamed:@"Icon.png"];
-		[imageButton setBackgroundImage:imageBackground forState:UIControlStateNormal];
-	}
 	
 	CGRect labelRect = self.textLabel.frame;
 	CGRect contentBounds = self.contentView.bounds;
@@ -47,16 +37,7 @@
 								   contentBounds.size.height
 								   );
 	
-	imageButton.frame = buttonRect;
-}
-
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-	[super setEditing:editing animated:animated];
-
-	if (editing)
-		imageButton.enabled = YES;
-	else
-		imageButton.enabled = NO;
+	picture.frame = buttonRect;
 }
 
 - (void)setTarget:(id)target withKey:(NSString*)key {
@@ -78,19 +59,10 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	UIImage *newImage = [change valueForKey:NSKeyValueChangeNewKey];
 	if ([newImage isKindOfClass:[UIImage class]]) {
-		imageBackground = newImage;
-		[imageButton setBackgroundImage:newImage forState:UIControlStateNormal];
+		picture.image = newImage;		
 		[self setNeedsLayout];
-	}
-}
-
-- (IBAction)pickImage:(id)sender {
-	if (self.editing && self.controller) {
-		PickAnImageController *picker = [[[PickAnImageController alloc] initWithNibName:nil bundle:nil] autorelease];
-		picker.target = dataTarget;
-		picker.key = dataKey;
-		
-		[self.controller presentModalViewController:picker animated:YES];
+	} else {
+		picture.image = [UIImage imageNamed:@"Icon.png"];
 	}
 }
 

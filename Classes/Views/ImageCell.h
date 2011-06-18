@@ -10,12 +10,7 @@
 #import "CAttributeCell.h"
 
 @interface ImageCell : CAttributeCell {
-	// we're not keeping refcounts on either of these, because they get retained
-	// via our subviews.
-	UIButton* imageButton;
-	UIImage* imageBackground;
+	UIImageView *picture;
 }
-
-- (IBAction)pickImage:(id)sender;
 
 @end

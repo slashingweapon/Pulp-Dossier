@@ -16,6 +16,8 @@ static NSString *gPickAPictureTitle = @"Choose a Picture";
 
 @synthesize target;
 @synthesize key;
+@synthesize ipc;
+@synthesize sheet;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,39 +33,44 @@ static NSString *gPickAPictureTitle = @"Choose a Picture";
 - (void)loadView {
 	// CGRect bounds = [[UIScreen mainScreen] bounds];
 	// CGRect frame = CGRectMake(0,0, bounds.size.width, bounds.size.height);
-	CGRect frame = CGRectMake(0,0, 0, 0);
+	CGRect frame = [[UIScreen mainScreen] applicationFrame];
 	
 	self.view = [[[UIView alloc] initWithFrame:frame] autorelease];
-	self.view.alpha = 0.0;
-	self.view.opaque = NO;
 }
 
 - (void)dealloc {
-    [super dealloc];
 	[target release];
 	[key release];
+	[ipc release];
+	[sheet release];
+    [super dealloc];
 }
 
 /*	Whenever we appear, load the action sheet.  In turn, that will cause the picker controller
  to load.
  */
 - (void)viewDidAppear:(BOOL)animated {
-	UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"" 
-													   delegate:self
-											  cancelButtonTitle:@"Cancel"
-										 destructiveButtonTitle:nil
-											  otherButtonTitles:nil, nil];
-	
-	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-		[sheet addButtonWithTitle:gTakeAPictureTitle];
-	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum])
-		[sheet addButtonWithTitle:gPickAPictureTitle];
-	[sheet showInView:self.view];
+	if (!sheet) {
+		sheet = [[UIActionSheet alloc] initWithTitle:@"" 
+														   delegate:self
+												  cancelButtonTitle:@"Cancel"
+											 destructiveButtonTitle:nil
+												  otherButtonTitles:nil, nil];
+		
+		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+			[sheet addButtonWithTitle:gTakeAPictureTitle];
+		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum])
+			[sheet addButtonWithTitle:gPickAPictureTitle];
+		[sheet showInView:self.view];
+	} else {
+		self.sheet = nil;
+		[self dismissModalViewControllerAnimated:YES];
+	}
 }
 
-- (void)actionSheet:(UIActionSheet *)sheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)actionSheet:(UIActionSheet *)sheetx clickedButtonAtIndex:(NSInteger)buttonIndex {
 	UIImagePickerControllerSourceType source;
-	NSString* buttonTitle = [sheet buttonTitleAtIndex:buttonIndex];
+	NSString* buttonTitle = [sheetx buttonTitleAtIndex:buttonIndex];
 	BOOL canceled = NO;
 	
 	// which source did the user pick?
@@ -75,12 +82,11 @@ static NSString *gPickAPictureTitle = @"Choose a Picture";
 		canceled = YES;
 	
 	if (!canceled) {
-		UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+		self.ipc = [[[UIImagePickerController alloc] init] autorelease];
 		[ipc setSourceType: source];
 		[ipc setDelegate:self];
 		ipc.allowsEditing = YES;
 		[self presentModalViewController:ipc animated:YES];
-		[ipc release];
 	} else {
 		[self.parentViewController dismissModalViewControllerAnimated:YES];
 	}
@@ -110,11 +116,13 @@ static NSString *gPickAPictureTitle = @"Choose a Picture";
 			[self.target setValue:image forKey:key];		
 	}
 	
-	[self.parentViewController dismissModalViewControllerAnimated:YES];
+	[self dismissModalViewControllerAnimated:YES];
+	// [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-	[self.parentViewController dismissModalViewControllerAnimated:YES];
+	[self dismissModalViewControllerAnimated:YES];
+	// [self dismissModalViewControllerAnimated:YES];
 }
 
 

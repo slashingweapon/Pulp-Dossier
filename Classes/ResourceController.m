@@ -25,9 +25,9 @@
 #pragma mark Initialization
 
 
-- (id)initWithStyle:(UITableViewStyle)style {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 		canceled = NO;
 		canEdit = YES;
@@ -36,13 +36,13 @@
 }
 
 - (void)dealloc {
-    [super dealloc];
 	[resource release];
 	[editBtn release];
 	[cancelBtn release];
 	[doneBtn release];
 	[sectionHeader release];
 	[rePick release];
+    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,6 +60,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	self.tableView.allowsSelectionDuringEditing = YES;	
 	if (self.editing)
 		self.navigationItem.leftBarButtonItem = self.cancelBtn;
 	else if (canEdit)
@@ -185,7 +186,6 @@
 	}
 	
 	if (vc) {
-		// [self.navigationController pushViewController:vc animated:YES];
 		[self presentModalViewController:vc animated:YES];
 		[tableView deselectRowAtIndexPath:indexPath animated:NO];
 	} else {
