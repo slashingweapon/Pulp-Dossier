@@ -20,6 +20,7 @@
  */
 @interface ResourceController : UITableViewController {
 	CAttributeContainer *resource;
+	CAttributeContainer *resourceBackup;	// for rolling back cancelled edits
 	BOOL canceled;
 	BOOL canEdit;
 	UIBarButtonItem *editBtn;
@@ -31,6 +32,7 @@
 }
 
 @property (nonatomic, retain) CAttributeContainer *resource;
+@property (nonatomic, retain) CAttributeContainer *resourceBackup;
 @property (nonatomic, readonly, assign) BOOL canceled;
 @property (nonatomic, assign) BOOL canEdit;
 @property (readonly, getter=data) NSMutableArray *data;

@@ -15,16 +15,19 @@
 @synthesize dataKey;
 @synthesize controller;
 
-- (void)dealloc {
-    [super dealloc];
 
-	[self setTarget:nil withKey:nil];
+- (void)dealloc {
+	[self setTarget:nil withKey:nil];	// takes care of release and unregisters us as observer
+    [super dealloc];
 }
 
 - (void)setTarget:(id)target withKey:(NSString*)key {
 	// unregister any old observers
-	if (dataTarget)
+	if (dataTarget) {
 		[dataTarget removeObserver:self forKeyPath:dataKey];
+		[dataTarget release];
+		[dataKey release];
+	}
 	
 	dataTarget = [target retain];
 	dataKey = [key retain];	

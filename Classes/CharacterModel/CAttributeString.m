@@ -40,8 +40,8 @@
 }
 
 - (void)dealloc {
-	[super dealloc];
 	[self.stringValue release];
+	[super dealloc];
 }
 
 - (UITableViewCell*)cellForTableView:(UITableView *)tableView {

@@ -46,8 +46,8 @@
 }
 
 - (void)dealloc {
+	[self.imageValue release];
 	[super dealloc];
-	[self.imageValue dealloc];
 }
 
 - (UITableViewCell*)cellForTableView:(UITableView *)tableView {

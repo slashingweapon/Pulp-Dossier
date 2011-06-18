@@ -23,11 +23,10 @@
 		currentValue = 0;
 		minValue = 0;
 		maxValue = 100;
-        segV = [[UISegmentedControl alloc] initWithItems:segItems];
+        segV = [[[UISegmentedControl alloc] initWithItems:segItems] autorelease];
 		segV.momentary = YES;
 		segV.segmentedControlStyle = UISegmentedControlStyleBar;
 		[segV addTarget:self action:@selector(changeValue:) forControlEvents:UIControlEventValueChanged];
-		// [self.contentView addSubview:segV];
 		self.editingAccessoryView = segV;
 		
 		self.detailTextLabel.adjustsFontSizeToFitWidth = YES;
@@ -37,7 +36,6 @@
 
 - (void)dealloc {
 	[super dealloc];
-	[segV release];
 }
 
 /*	There is an interesting possibility here.  If someone sets a flag to "always allow editing",

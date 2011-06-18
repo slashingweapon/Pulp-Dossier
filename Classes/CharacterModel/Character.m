@@ -57,5 +57,9 @@
 	[encoder encodeObject:version forKey:@"version"];
 }
 
+- (void)dealloc {
+	[version release];
+	[super dealloc];
+}
 
 @end

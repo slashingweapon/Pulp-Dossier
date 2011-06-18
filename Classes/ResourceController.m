@@ -12,6 +12,7 @@
 @implementation ResourceController
 
 @synthesize resource;
+@synthesize resourceBackup;
 @synthesize data;
 @synthesize canceled;
 @synthesize canEdit;
@@ -60,7 +61,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	if (self.editing)
-		self.navigationItem.rightBarButtonItem = self.cancelBtn;
+		self.navigationItem.leftBarButtonItem = self.cancelBtn;
 	else if (canEdit)
 		self.navigationItem.rightBarButtonItem = self.editBtn;
 }
@@ -148,6 +149,27 @@
 }
 */
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	CGFloat retval = 0.0;
+	
+	if (!self.tableView.editing) {
+		CGRect rect = self.sectionHeader.frame;
+		retval = rect.size.height;
+	}
+	
+	return retval;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	UIView *retval = nil;
+	
+	if (!self.tableView.editing) {
+		retval = self.sectionHeader;
+		self.sectionHeader.hidden = NO;
+	}
+
+	return retval;
+}
 
 #pragma mark -
 #pragma mark Table view delegate
@@ -183,6 +205,8 @@
 	BOOL foundImage = NO;
 	BOOL foundString = NO;
 	NSMutableArray *temp = [NSMutableArray arrayWithCapacity:2];
+	UIImageView *uiv;
+	UILabel *lbl;
 	
 	if (data == nil) {
 		if (!resource) {
@@ -194,26 +218,30 @@
 		}
 		
 		data = [[NSMutableArray arrayWithArray:resource.attributes] retain];
-		if (!self.editing) {
+		if (!self.tableView.editing) {
 			// we look for the first image attribute, and the first text attribute
 			for (CAttribute *att in resource.attributes) {
 				if (!foundImage && [att.type isEqualToString:@"image"]) {
-					UIImageView* uiv = (UIImageView*) [sectionHeader viewWithTag:100];
+					uiv = (UIImageView*) [sectionHeader viewWithTag:100];
 					if (uiv != nil) {
 						uiv.image = [att  valueForKey:@"imageValue"];
 						[temp addObject:att];
+						foundImage = YES;
 					}
 				}
 				if (!foundString && [att.type isEqualToString:@"string"]) {
-					UILabel* lbl = (UILabel*)[sectionHeader viewWithTag:101];
+					lbl = (UILabel*)[sectionHeader viewWithTag:101];
 					if (lbl != nil) {
-						lbl.text = [att valueForKey:@"stringValue"];
+						NSString *st = [att valueForKey:@"stringValue"];
+						if (st)
+							lbl.text = st;
 						[temp addObject:att];
+						foundString = YES;
 					}
 				}
 			}
 			if ([temp count]>0)
-				[temp removeObjectsInArray:temp];
+				[data removeObjectsInArray:temp];
 		}
 	}
 	
@@ -223,11 +251,26 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animate {
 	[super setEditing:editing animated:animate];
 	
+	// Dump our data model so it will be rebuilt later
+	[data release];
+	data = nil;
+	
 	if (editing) {
+		// make a backup copy of our data in case we want to cancel
+		NSData *serialData = [NSKeyedArchiver archivedDataWithRootObject:resource];
+		CAttributeContainer *newResource = [NSKeyedUnarchiver unarchiveObjectWithData:serialData];
+		if (newResource) {
+			self.resourceBackup = self.resource;
+			self.resource = newResource;
+		}
 		self.navigationItem.rightBarButtonItem = doneBtn;
+		self.navigationItem.leftBarButtonItem = cancelBtn;
 	} else {
+		self.resourceBackup = nil;
 		self.navigationItem.rightBarButtonItem = editBtn;
+		self.navigationItem.leftBarButtonItem = nil;
 	}
+ 	[self.tableView reloadData];
 }
 
 - (IBAction) hitEditBtn:(id)sender {
@@ -235,6 +278,7 @@
 }
 
 - (IBAction) hitCancelBtn:(id)sender {
+	self.resource = self.resourceBackup;
 	[self setEditing:NO animated:YES];
 }
 
@@ -290,6 +334,7 @@
 	attr = [attrClass alloc];
 	if (attr) {
 		[[attr initWithString:@""] autorelease];
+		attr.label = @" ";
 		// the proper way to do this is through observation
 		[resource.attributes addObject:attr];
 		[data addObject:attr];

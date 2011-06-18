@@ -35,11 +35,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
-
-
 /**
  *	The technique here is to let the superclass do all the math for us.  Then we just hide the detailTextLabel,
  *	and steal its frame, font size, color, etc. for our textField object.

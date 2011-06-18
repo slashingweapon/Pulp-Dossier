@@ -36,12 +36,12 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     [super encodeWithCoder:encoder];
-    [encoder encodeObject:label forKey:@"label"];	
+    [encoder encodeObject:self.integerValue forKey:@"integerValue"];	
 }
 
 - (void)dealloc {
-	[super dealloc];
 	[self.integerValue release];
+	[super dealloc];
 }
 
 - (NSString*)getStringValue {
@@ -49,7 +49,7 @@
 }
 
 - (UITableViewCell*)cellForTableView:(UITableView *)tableView {
-	static NSString* cellIdentifier = @"CAttributeStringCell";
+	static NSString* cellIdentifier = @"CAttributeIntegerCell";
 	IntegerCell* cell = (IntegerCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (![cell isKindOfClass:[IntegerCell class]]) {
 		cell = [[[IntegerCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cellIdentifier] autorelease];
@@ -57,6 +57,7 @@
 	
 	if (cell != nil) {
 		cell.textLabel.text = self.label;
+		cell.formatSelector = @selector(getStringValue);
 		[cell setTarget:self withKey:@"integerValue"];
 		cell.minValue = 0;
 		cell.maxValue = 99;

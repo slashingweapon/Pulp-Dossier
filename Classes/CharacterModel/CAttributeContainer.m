@@ -39,8 +39,8 @@
 }
 
 - (void)dealloc {
+	[self.attributes release];
 	[super dealloc];
-	[self.attributes dealloc];
 }
 
 - (id)valueForUndefinedKey:(NSString *)key {

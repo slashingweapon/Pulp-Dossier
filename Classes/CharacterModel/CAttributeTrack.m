@@ -53,11 +53,11 @@
 }
 
 - (void)dealloc {
-	[super dealloc];
 	[self unobserveSelf];
 	[self.maximum release];
 	[self.track	release];
 	[self.consequences release];
+	[super dealloc];
 }
 
 /*	The stringEquivalent property depends on the three primary properties.  To make sure

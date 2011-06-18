@@ -48,6 +48,11 @@ static NSArray* gLevelStrings;
 	[encoder encodeObject:self.levelValue forKey:@"levelValue"];
 }
 
+- (void)dealloc {
+	[self.levelValue release];
+	[super dealloc];
+}
+
 -(BOOL)validateLevelValue:(id *)ioValue error:(NSError **)outError {
 	static NSString *errorString = @"Ladder values must be NSNumbers between -2 and 8";
 	NSInteger intValue;
@@ -74,7 +79,7 @@ static NSArray* gLevelStrings;
 }
 
 - (UITableViewCell*)cellForTableView:(UITableView *)tableView {
-	static NSString* cellIdentifier = @"CAttributeLadderCell";
+	static NSString* cellIdentifier = @"CAttributeIntegerCell";
 	IntegerCell* cell = (IntegerCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (![cell isKindOfClass:[IntegerCell class]]) {
 		cell = [[[IntegerCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cellIdentifier] autorelease];

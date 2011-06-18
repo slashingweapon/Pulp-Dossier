@@ -33,8 +33,8 @@
 }
 
 - (void)dealloc {
+	[self.label release];
 	[super dealloc];
-	[self.label dealloc];
 }
 
 - (CAttributeCell*)cellForTableView:(UITableView *)tableView {
