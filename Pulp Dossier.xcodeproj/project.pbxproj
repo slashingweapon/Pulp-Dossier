@@ -18,6 +18,8 @@
 		23522D7A13A56C7B00C310B5 /* IntegerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23522D7913A56C7B00C310B5 /* IntegerCell.m */; };
 		2360647913A26DCF008B5EBC /* CAttributeTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2360647813A26DCF008B5EBC /* CAttributeTrack.m */; };
 		236064B113A2A79B008B5EBC /* TrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 236064AF13A2A79B008B5EBC /* TrackViewController.m */; };
+		2371F9C813C11FE600511A1A /* CharacterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2371F9C713C11FE600511A1A /* CharacterController.m */; };
+		2371F9EA13C1268000511A1A /* CharacterIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 2371F9E913C1268000511A1A /* CharacterIndex.m */; };
 		2382387313A0579300867254 /* CAttributeLadder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2382387213A0579300867254 /* CAttributeLadder.m */; };
 		239442F313942B8500F8F9D3 /* CharacterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239442F113942B8500F8F9D3 /* CharacterController.xib */; };
 		2394437F1394940D00F8F9D3 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2394437E1394940D00F8F9D3 /* Icon.png */; };
@@ -67,6 +69,10 @@
 		2360647813A26DCF008B5EBC /* CAttributeTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAttributeTrack.m; path = CharacterModel/CAttributeTrack.m; sourceTree = "<group>"; };
 		236064AD13A2A79B008B5EBC /* TrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackViewController.h; sourceTree = "<group>"; };
 		236064AF13A2A79B008B5EBC /* TrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackViewController.m; sourceTree = "<group>"; };
+		2371F9C613C11FE600511A1A /* CharacterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterController.h; sourceTree = "<group>"; };
+		2371F9C713C11FE600511A1A /* CharacterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterController.m; sourceTree = "<group>"; };
+		2371F9E813C1268000511A1A /* CharacterIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterIndex.h; sourceTree = "<group>"; };
+		2371F9E913C1268000511A1A /* CharacterIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterIndex.m; sourceTree = "<group>"; };
 		2382387113A0579300867254 /* CAttributeLadder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAttributeLadder.h; sourceTree = "<group>"; };
 		2382387213A0579300867254 /* CAttributeLadder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAttributeLadder.m; sourceTree = "<group>"; };
 		239442F113942B8500F8F9D3 /* CharacterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterController.xib; sourceTree = "<group>"; };
@@ -137,8 +143,12 @@
 			children = (
 				23D022AC139C7655006BDA7A /* CharacterModel */,
 				235B8269139B2F7900146FA0 /* Views */,
+				2371F9C613C11FE600511A1A /* CharacterController.h */,
+				2371F9C713C11FE600511A1A /* CharacterController.m */,
 				23D0230C139E86B4006BDA7A /* CharacterEditorController.h */,
 				23D0230D139E86B4006BDA7A /* CharacterEditorController.m */,
+				2371F9E813C1268000511A1A /* CharacterIndex.h */,
+				2371F9E913C1268000511A1A /* CharacterIndex.m */,
 				23A83B5B1395C761000325AE /* DiceController.h */,
 				23A83B5C1395C761000325AE /* DiceController.m */,
 				23D0258313A02513006BDA7A /* PickAnImageController.h */,
@@ -359,6 +369,8 @@
 				23522D5513A565B300C310B5 /* CAttributeInteger.m in Sources */,
 				23522D7A13A56C7B00C310B5 /* IntegerCell.m in Sources */,
 				2318671913A6A74E00E1B519 /* ResourceController.m in Sources */,
+				2371F9C813C11FE600511A1A /* CharacterController.m in Sources */,
+				2371F9EA13C1268000511A1A /* CharacterIndex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

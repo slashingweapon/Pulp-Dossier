@@ -12,19 +12,28 @@
 @implementation CAttributeContainer
 
 @synthesize type;
+@synthesize uuid;
 @synthesize attributes;
 
 
 -(id)init {
 	self = [super init];
-	if (self)
+	if (self) {
 		self.attributes = [NSMutableArray array];
+		
+		CFUUIDRef guid = CFUUIDCreate(NULL);
+		if (guid) {
+			NSString *tempUuid = [NSString stringWithString: (NSString*)CFUUIDCreateString(NULL, guid)];
+			self.uuid = tempUuid;
+			CFRelease(guid);
+		}
+	}
 	return self;
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
 	self.type = [decoder decodeObjectForKey:@"type"];
-	
+	self.uuid = [decoder decodeObjectForKey:@"uuid"];
 	self.attributes = [decoder decodeObjectForKey:@"attributes"];
 	if (self.attributes == nil) {
 		self.attributes = [NSArray array];

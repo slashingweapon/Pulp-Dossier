@@ -21,10 +21,12 @@
  */
 @interface CAttributeContainer : NSObject <NSCoding> {
 	NSString *type;
+	NSString *uuid;
 	NSMutableArray *attributes;
 }
 
 @property (nonatomic,retain) NSString *type;
+@property (nonatomic,retain) NSString *uuid;
 @property (nonatomic,retain) NSMutableArray *attributes;
 
 /*	Retrieves the first attribute whose label is equal to the key.  If the

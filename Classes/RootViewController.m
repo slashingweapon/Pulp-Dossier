@@ -10,7 +10,8 @@
 
 #import "RootViewController.h"
 #import "Character.h"
-#import "ResourceController.h"
+#import "CharacterController.h"
+#import "CharacterIndex.h"
 #import "DiceController.h"
 
 // this doesn't belong here.  We'll move it soon...
@@ -18,6 +19,7 @@ NSMutableArray* gAllCharacters;
 
 @implementation RootViewController
 
+@synthesize allCharacters;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -34,6 +36,8 @@ NSMutableArray* gAllCharacters;
 	
 	if (!gAllCharacters)
 		gAllCharacters = [[NSMutableArray array] retain]; // [[Character readAllCharacters] retain];
+	
+	self.allCharacters = [[[CharacterIndex alloc] init] autorelease];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -144,6 +148,7 @@ NSMutableArray* gAllCharacters;
 
 
 - (void)dealloc {
+	self.allCharacters = nil;
     [super dealloc];
 }
 
@@ -171,7 +176,7 @@ NSMutableArray* gAllCharacters;
 	Character* newChar = [[[Character alloc] init] autorelease];
 	[gAllCharacters addObject:newChar];
 	
-	ResourceController* cc = [[ResourceController alloc] initWithNibName:@"ResourceController" bundle:nil];
+	CharacterController* cc = [[CharacterController alloc] initWithNibName:@"CharacterController" bundle:nil];
 	cc.resource = newChar;
 	[cc setEditing:YES animated:NO];
 	

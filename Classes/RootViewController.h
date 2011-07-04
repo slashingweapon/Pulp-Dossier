@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class CharacterIndex;
+
 @interface RootViewController : UITableViewController {
+	CharacterIndex *allCharacters;
 }
+
+@property (nonatomic,retain) CharacterIndex *allCharacters;
 
 @end
