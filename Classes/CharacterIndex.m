@@ -72,17 +72,16 @@ static CharacterIndex *gSharedIndex;
 			for ( NSString* oneFile in contents ) {
 				NSString *oneFullPath = [characterDir stringByAppendingPathComponent:oneFile];
 				if (oneFullPath) {
-					id character = [NSKeyedUnarchiver unarchiveObjectWithFile:oneFullPath];
-					if (character)
-						[self.characters addObject:character];
+					@try {
+						id character = [NSKeyedUnarchiver unarchiveObjectWithFile:oneFullPath];
+						if ([character isKindOfClass:[Character class]])
+							[self.characters addObject:character];
+					}
+					@catch (NSException *exception) {
+						NSLog(@"Unable to open %@", oneFullPath);
+					}
 				}
 			}
-
-			
-			// iterate through all of the character files
-			
-				// read each one and put it into the array
-			
 		}
 	
 		[fm release];
@@ -91,15 +90,30 @@ static CharacterIndex *gSharedIndex;
 }
 
 - (void)addCharacter:(Character*)newCharacter {
+	NSUInteger idx = 0;
+	
 	if (newCharacter) {
 		// get rid of any characters that have the same UUID
 		NSPredicate *pred = [NSPredicate predicateWithFormat:@"uuid == %@", newCharacter.uuid];
 		NSArray *oldChars = [self.characters filteredArrayUsingPredicate:pred];
 		
+		// we want to save the index of the item we're deleting, to keep everything in its proper place
+		if ([oldChars count])
+			idx = [self.characters indexOfObject:[oldChars objectAtIndex:0]];
+		
 		[self.characters removeObjectsInArray:oldChars];
 
-		[self.characters addObject:newCharacter];
+		[self.characters insertObject:newCharacter atIndex:idx];
 		
+	}
+}
+
+- (void)removeCharacter:(Character*)theCharacter {
+	if (theCharacter) {
+		NSPredicate *pred = [NSPredicate predicateWithFormat:@"uuid == %@", theCharacter.uuid];
+		NSArray *oldChars = [self.characters filteredArrayUsingPredicate:pred];
+		
+		[self.characters removeObjectsInArray:oldChars];		
 	}
 }
 
@@ -120,6 +134,25 @@ static CharacterIndex *gSharedIndex;
 	
 	[self addCharacter:theCharacter];
 	
+}
+
+- (void) deleteCharacter:(Character*)theCharacter {
+	NSFileManager *fm = [[NSFileManager alloc] init];
+	NSError *error;
+	
+	if (fm) {
+		NSString *characterDir = [self characterDirectoryWithFileManager:fm];
+		
+		if (characterDir) {
+			NSString *savePath = [characterDir stringByAppendingPathComponent:theCharacter.uuid];
+			if (savePath) {
+				if(![fm removeItemAtPath:savePath error:&error])
+					NSLog(@"Error deleting %@ - %@", savePath, [error localizedDescription]);
+			}
+		}
+	}
+	
+	[self removeCharacter:theCharacter];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

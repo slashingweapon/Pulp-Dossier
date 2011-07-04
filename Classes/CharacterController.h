@@ -27,6 +27,7 @@
 	UIBarButtonItem *editBtn;
 	UIBarButtonItem *cancelBtn;
 	UIBarButtonItem *doneBtn;
+	UIButton *deleteBtn;
 	UIView *sectionHeader;
 	NSMutableArray *data;
 	ResourcePicker *rePick;
@@ -40,6 +41,7 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *editBtn;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *cancelBtn;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *doneBtn;
+@property (nonatomic, retain) IBOutlet UIButton *deleteBtn;
 @property (nonatomic, retain) IBOutlet UIView *sectionHeader;
 
 - (NSMutableArray*) data;
@@ -47,6 +49,7 @@
 - (IBAction) hitEditBtn:(id)sender;
 - (IBAction) hitCancelBtn:(id)sender;
 - (IBAction) hitDoneBtn:(id)sender;
+- (IBAction) hitDeleteBtn: (id)sender;
 
 - (void) presentAttributeTypeChooser;
 - (void) didPickAttributeType:(id)attrDict;

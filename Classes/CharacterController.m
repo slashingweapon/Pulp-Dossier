@@ -21,6 +21,7 @@
 @synthesize editBtn;
 @synthesize cancelBtn;
 @synthesize doneBtn;
+@synthesize deleteBtn;
 @synthesize sectionHeader;
 
 #pragma mark -
@@ -209,6 +210,26 @@
 	
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+	CGFloat retval = 0.0;
+	
+	if (!self.editing && section == [self.tableView.dataSource numberOfSectionsInTableView:self.tableView]-1) {
+		CGRect frame = self.deleteBtn.frame;
+		retval = frame.size.height;
+	}
+	
+	return retval;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+	UIView *retval = nil;
+	
+	if (!self.editing && section == [self.tableView.dataSource numberOfSectionsInTableView:self.tableView]-1)
+		return self.deleteBtn;
+	
+	return retval;
+}
+
 /*	The data object acts like a not-very-good proxy to the attribute container.  
 	When we're not in editing mode, some of the attributes are displayed in the 
 	section header and are omitted from the table itself.  During editing, all
@@ -299,6 +320,13 @@
 
 - (IBAction) hitDoneBtn:(id)sender {
 	[self setEditing:NO animated:YES];
+}
+
+- (IBAction) hitDeleteBtn: (id)sender {
+	[[CharacterIndex sharedIndex] deleteCharacter:self.resource];
+	// by setting the resource to nil, we make sure that -viewWillDisappear doesn't re-save the character
+	self.resource = nil;
+	[self.navigationController	popViewControllerAnimated:YES];
 }
 
 - (void) presentAttributeTypeChooser {

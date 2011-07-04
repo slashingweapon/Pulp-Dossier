@@ -24,5 +24,6 @@
 - (void)addCharacter:(Character*)newCharacter;
 - (Character*)objectAtIndex:(NSUInteger)index;
 - (void)saveCharacter:(Character*)theCharacter;
+- (void) deleteCharacter:(Character*)theCharacter;
 
 @end
