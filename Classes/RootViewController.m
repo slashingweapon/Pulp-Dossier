@@ -14,9 +14,6 @@
 #import "CharacterIndex.h"
 #import "DiceController.h"
 
-// this doesn't belong here.  We'll move it soon...
-NSMutableArray* gAllCharacters;
-
 @implementation RootViewController
 
 @synthesize allCharacters;
@@ -33,15 +30,11 @@ NSMutableArray* gAllCharacters;
 																							target:self 
 																							action:@selector(addCharacter:)]
 											  autorelease];
-	
-	if (!gAllCharacters)
-		gAllCharacters = [[NSMutableArray array] retain]; // [[Character readAllCharacters] retain];
-	
-	self.allCharacters = [[[CharacterIndex alloc] init] autorelease];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	self.tableView.dataSource = [CharacterIndex sharedIndex];
 	[self.tableView reloadData];
 }
 
@@ -68,6 +61,7 @@ NSMutableArray* gAllCharacters;
  */
 
 
+/*
 #pragma mark -
 #pragma mark Table view data source
 
@@ -114,20 +108,16 @@ NSMutableArray* gAllCharacters;
     return cell;
 }
 
+*/
 
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	// No viewing is possible until we can add characters
+	CharacterController* cc = [[CharacterController alloc] initWithNibName:@"CharacterController" bundle:nil];
 	
-	/*
-    Character* pickedChar = [gAllCharacters objectAtIndex:indexPath.row];
-	CharacterController *cc = [[CharacterController alloc] initWithNibName:@"CharacterController" bundle:nil];
-	
-	cc.character = pickedChar;
+	cc.resource = [[CharacterIndex sharedIndex] objectAtIndex:indexPath.row];
 	[self.navigationController pushViewController:cc animated:YES];
-	 */
 }
 
 
@@ -148,7 +138,6 @@ NSMutableArray* gAllCharacters;
 
 
 - (void)dealloc {
-	self.allCharacters = nil;
     [super dealloc];
 }
 
@@ -173,12 +162,7 @@ NSMutableArray* gAllCharacters;
  *	onto our navigation controller.
  */
 - (void) addCharacter:(id)sender {
-	Character* newChar = [[[Character alloc] init] autorelease];
-	[gAllCharacters addObject:newChar];
-	
 	CharacterController* cc = [[CharacterController alloc] initWithNibName:@"CharacterController" bundle:nil];
-	cc.resource = newChar;
-	[cc setEditing:YES animated:NO];
 	
 	[self.navigationController pushViewController:cc animated:YES];
 }

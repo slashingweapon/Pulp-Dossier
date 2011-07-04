@@ -39,11 +39,21 @@
 		self.attributes = [NSArray array];
 	}
 
+	if (!self.uuid) {
+		CFUUIDRef guid = CFUUIDCreate(NULL);
+		if (guid) {
+			NSString *tempUuid = [NSString stringWithString: (NSString*)CFUUIDCreateString(NULL, guid)];
+			self.uuid = tempUuid;
+			CFRelease(guid);
+		}
+	}
+	
 	return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
 	[encoder encodeObject:type forKey:@"type"];
+	[encoder encodeObject:uuid forKey:@"uuid"];
 	[encoder encodeObject:attributes forKey:@"attributes"];
 }
 

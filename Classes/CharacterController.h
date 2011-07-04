@@ -10,6 +10,7 @@
 #import "CAttributeContainer.h"
 
 @class ResourcePicker;
+@class Character;
 
 /*	This controller is meant to be used either as a view-only
 	table in "normal" mode, or as a modal edititable table.
@@ -19,8 +20,8 @@
 	if we were canceled or if we were saved.
  */
 @interface CharacterController : UITableViewController {
-	CAttributeContainer *resource;
-	CAttributeContainer *resourceBackup;	// for rolling back cancelled edits
+	Character *resource;
+	Character *resourceBackup;	// for rolling back cancelled edits
 	BOOL canceled;
 	BOOL canEdit;
 	UIBarButtonItem *editBtn;
@@ -31,8 +32,8 @@
 	ResourcePicker *rePick;
 }
 
-@property (nonatomic, retain) CAttributeContainer *resource;
-@property (nonatomic, retain) CAttributeContainer *resourceBackup;
+@property (nonatomic, retain) Character *resource;
+@property (nonatomic, retain) Character *resourceBackup;
 @property (nonatomic, readonly, assign) BOOL canceled;
 @property (nonatomic, assign) BOOL canEdit;
 @property (readonly, getter=data) NSMutableArray *data;

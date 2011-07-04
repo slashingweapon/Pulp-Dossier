@@ -8,6 +8,8 @@
 
 #import "CharacterController.h"
 #import "ResourcePicker.h"
+#import "Character.h"
+#import "CharacterIndex.h"
 
 @implementation CharacterController
 
@@ -60,6 +62,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	
+	// if we never got set up with a character, make a new one now and
+	// put ourselves into editing mode.
+	if (!self.resource) {
+		self.resource = [[Character alloc] init];
+		[self setEditing:YES animated:NO];
+	}
+
 	self.tableView.allowsSelectionDuringEditing = YES;	
 	if (self.editing)
 		self.navigationItem.leftBarButtonItem = self.cancelBtn;
@@ -67,6 +77,11 @@
 		self.navigationItem.rightBarButtonItem = self.editBtn;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+	// save the character
+	if (self.resource)
+		[[CharacterIndex sharedIndex] saveCharacter:self.resource];
+}
 
 
 #pragma mark -
@@ -258,7 +273,7 @@
 	if (editing) {
 		// make a backup copy of our data in case we want to cancel
 		NSData *serialData = [NSKeyedArchiver archivedDataWithRootObject:resource];
-		CAttributeContainer *newResource = [NSKeyedUnarchiver unarchiveObjectWithData:serialData];
+		Character *newResource = [NSKeyedUnarchiver unarchiveObjectWithData:serialData];
 		if (newResource) {
 			self.resourceBackup = self.resource;
 			self.resource = newResource;

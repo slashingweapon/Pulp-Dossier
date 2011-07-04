@@ -11,7 +11,7 @@
 @class CharacterIndex;
 
 @interface RootViewController : UITableViewController {
-	CharacterIndex *allCharacters;
+
 }
 
 @property (nonatomic,retain) CharacterIndex *allCharacters;
